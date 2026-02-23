@@ -1,0 +1,78 @@
+lsblk
+
+read/write
+
+create mount point = folder
+
+df -h
+
+check filesistem
+
+fdisk -l
+mkfs.ext4 or mkfs.xfs etc      .... /dev/sdb
+
+Максим 20:00
+fdisk -l
+fdisk -l /dev/sdb
+
+Dmytro Vasiliev 20:02
+blkid /dev/sdb
+
+sudo mkfs.ext4 /dev/sdb
+pwd
+mkdir disk2
+sudo mount /dev/sdb /home/slavko/disk2
+lsblk
+
+
+sudo chown -R $USER:$USER disk2/
+
+ext4 defaults 0 0
+/dev/sdb: UUID="3338e022-9003-467a-9eb4-6216a1037634" BLOCK_SIZE="4096" TYPE="ext4"
+/dev/sdb: 
+
+blkid /dec/sdb
+UUID=3338e022-9003-467a-9eb4-6216a1037634   /home/slavko/disk2 ext4 defaults 0 0
+moint -a
+
+
+chmod 777  -> -wrxwrxwrx
+
+users:
+id
+
+sudo -i
+sudo -s
+sudo su
+
+exit or ^d
+
+adduser $user sudo
+
+Dmytro Vasiliev 21:26
+sudo -s
+Запускає shell як root, але з поточним середовищем користувача.
+HOME лишається користувача
+PATH частково користувацький
+ніби “тимчасово root”
+sudo -i
+Повний login shell root (як справжній вхід root).
+HOME = /root
+читаються /root/.profile, .bashrc
+root PATH
+sudo su
+sudo запускає su, а su переключає на root.
+часто HOME лишається користувача
+середовище змішане
+залежить від конфігурації su
+
+
+change right access owner
+chown
+
+/etx/passwd
+/etc/shadow
+
+adduser <username> -m(+group)
+useradd <username> -m
+

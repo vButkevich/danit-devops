@@ -1,0 +1,65 @@
+uname -a
+
+Максим 19:20
+sudo apt install kde-standard
+
+ssh -p 2222 yurii@127.0.0.1
+
+
+sudo apt install ssh -y
+apt -y install openssh-server
+
+$PATH
+
+htop
+sudo apt instal htop
+sudo apt instal nmon
+
+tail -f <filename>
+
+|grep
+
+|wc -l
+
+echo -e "aaaa\nbbb"
+\n - new line
+\t - tab
+
+<command1>; <command2>;...
+<command1> && <command2> && ...
+$()
+https://gitlab.com/dan-it/groups/devops_14/-/blob/main/m2/l2/task.txt?ref_type=heads 
+
+
+# Task 1: Create one-line command that will display the following message: Hello! I am <USERNAME>. Currently, I am in this dir <CURRENT_DIR>. Also, there are <NUMBER OF FILES AND FOLDERS IN CURRENT DIR> files and folders. # Task 2: Create one-line command that will write in file users.txt info about current sessions. The format: <Current Time> <tabulation> <number of current sessions> Make sure that this command will add new lines to file every time when it is executed. # Task 3: Create command that will write info about your Server in the following format (note: multi line write): Linux kernel version: <Version> CPU Arch: <CPU Arch> Free space on disk: <Free space> Make sure that this command will regenerate this file every time.
+
+echo "Hello! I am $(whoami). Currently, I am in this dir $(pwd). Also, there are $(find . -mindepth 1 -maxdepth 1 | wc -l) files and folders."
+echo "Hello! I am $(whoami). Currently, I am in this dir $(pwd). Also, there are $(ls | wc -l) files and folders."
+
+Максим 21:22 (Edited)
+echo "Hello! I am $USER. Currently, I am in this dir $(pwd). Also, there are $(ls  | wc -l) files and folders."
+
+Task 2 — one-liner to append “time<TAB>sessions” into users.txt
+printf "%s\t%s\n" "$(date '+%F %T')" "$(who | wc -l)" >> users.txt
+
+Task 3 — command that rewrites a file with server info (multi-line)
+
+Example output file: server_info.txt
+
+{ echo "Linux kernel version: $(uname -r)"; echo "CPU Arch: $(uname -m)"; echo "Free space on disk: $(df -h / | awk 'NR==2{print $4}')"; } > server_info.txt
+
+echo -e "Linux kernel version: $(uname -r)\nCPU Arch: $(uname -m)\nFree space on disk: $(df -h / | awk 'NR==2 {print $4}')" > server_info.txt
+data '+%T'
+
+cat << EOF > <filename>
+$(uname -t)
+$(uname -m)
+EOF
+^C
+
+
+history
+^r
+
+lsblk
+
