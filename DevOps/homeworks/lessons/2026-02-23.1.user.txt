@@ -1,0 +1,84 @@
+-- 2026-02-23
+USERS:
+
+add user:
+useradd
+adduser
+sudo adduser -m -g userName
+
+
+-- add group:
+sudo groupadd groupName
+
+
+#--- set password
+sudo passwd userNAme passwors
+
+sudoers
+
+
+#--add user tot group:
+sudo usermod -aG groupName userName
+
+-- edit sudoers
+sudo visudo
+------------------------------------
+# Task 1: User creation
+
+Create three users: administrator, senior, junior
+Find their UID and GID. Update theirs default shell to /bin/bash
+
+sudo adduser administrator    --eaasysudo 
+
+sudo useradd -m senior
+sudo passwd senior
+su senior
+
+
+
+# Create users with specified shells
+sudo useradd -m -s /bin/bash administrator
+sudo useradd -m -s /bin/bash senior
+sudo useradd -m -s /bin/bash junior
+
+# Set passwords (optional but recommended)
+sudo passwd administrator
+sudo passwd senior
+sudo passwd junior
+
+# Find UID and GID
+echo "Administrator - UID: $(id -u administrator), GID: $(id -g administrator)"
+echo "Senior - UID: $(id -u senior), GID: $(id -g senior)"
+echo "Junior - UID: $(id -u junior), GID: $(id -g junior)"
+
+
+# Task 2: Permissions
+
+User "administrator" should have access to his home directory and home directories of "senior" and "junior".
+User "senior" should have access to his home directory and home directory of "junior".
+User "junior" should have access only to his home directory.
+
+sudo usermod -aG test administrator
+sudo usermod -aG test administrator
+sudo 
+
+# Task 3: Root access
+
+Configure user administrator to have root access without password prompt.
+Configure user senior to have root access with password prompt.
+Junior user should NOT have access to root.
+
+# Task 4: More permissions
+
+Create directory called "shared" by path /shared.
+Make this directory accessible only for users administrator, senior, junior. They should be able to read and write any files there.
+
+Next, create one more user called "john". John should NOT have access to /shared directory. Neither read nor write.
+
+
+
+
+
+
+
+

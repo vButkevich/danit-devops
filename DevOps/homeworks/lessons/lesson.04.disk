@@ -27,21 +27,27 @@ lsblk
 
 sudo chown -R $USER:$USER disk2/
 
+sudo cp /etc/fstab /etc/fstab.20260227.bak
+
 ext4 defaults 0 0
 /dev/sdb: UUID="3338e022-9003-467a-9eb4-6216a1037634" BLOCK_SIZE="4096" TYPE="ext4"
 /dev/sdb: 
 
 blkid /dec/sdb
 UUID=3338e022-9003-467a-9eb4-6216a1037634   /home/slavko/disk2 ext4 defaults 0 0
-moint -a
+mount -a
 
+UUID=e7c993f2-32a3-4dda-bfc2-49384c36e13b   /home/slavko/disk3  ext4    defaults    0   0
 
 chmod 777  -> -wrxwrxwrx
-
+#----------------------------------------------------
 users:
 id
 
-sudo -i
+sudo -i  - стати root
+exit
+^D
+
 sudo -s
 sudo su
 
@@ -70,7 +76,7 @@ sudo запускає su, а su переключає на root.
 change right access owner
 chown
 
-/etx/passwd
+/etc/passwd
 /etc/shadow
 
 adduser <username> -m(+group)

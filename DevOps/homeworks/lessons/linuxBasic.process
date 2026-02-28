@@ -1,0 +1,4 @@
+htop
+pstree
+ps aux
+ps aux |grep zoom

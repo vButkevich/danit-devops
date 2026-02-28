@@ -1,0 +1,143 @@
+--------------------------------------------------------
+2026-02-25
+lesson: module.2.
+
+show exitcode LASTEXITCI+ODE
+echo $?
+
+
+ls xxx && pwd
+ls xxx || pwd
+
+ls xxx || true
+
+
+sttdin
+stdout - 1
+stderr - 2
+
+redirect
+2>^1
+&>
+
+2> /dev/null
+ls xxx 2> /dev/null
+##ls xxx 2>&1
+##ls xxx 1> /dev/null
+##ls xxx 1> /dev/null 2>&1
+##ls xxx > /dev/null 2>&1
+
+du -h #size of files
+du -h --max-depth=1 #size of files in current directory 
+
+sudo apt install ncdu
+
+
+#download files
+wget
+curl
+
+curl ifconfig.io
+
+sudo apt install lynx
+lynx https://dan-it.com.ua/uk/program/devops
+
+
+1. build from source
+2. download ready binary / download ready installer / script for installation
+3. use package manager / packege repository
+$?
+
+sudo apt update
+apt list --upgradable
+sudo apt upgradedu -h
+sudo apt install htop -y
+
+sudo apt --fix-broken install
+
+sudo apt remove <packegename>
+#sudo apt purge <packegename> # full clear
+
+sudo apt list --installed
+sudod apt search <packegename>
+
+
+<#
+Today
+
+Vlad 19:00
++
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Yurii Vilchynskyi 19:23
+___________
+
+maksym 19:23
++
+
+ILLIA ZUBOV 19:23
++
+
+Ольга Кирилюк 19:23
++
+
+Королик Андрій 19:23
++
+
+Максим 19:23 (Edited)
++-
+
+Vlad 19:23
++-
+
+Максим 20:23
+apt install ncdu
+
+ILLIA ZUBOV 20:55
+wget ?
+
+Максим 20:57
+wget: Простейший способ: wget https://example.com/file.zip.
+wget -O: Сохранить под другим именем: wget -O newname.zip https://example.com/file.zip.
+curl: curl -O https://example.com/file.zip (сохраняет с оригинальным именем).
+lynx
+apt install lynx
+apt install -f
+
+Ольга Кирилюк 21:01
+https://i.dan-it.com.ua/programs/18/module/58/lesson/651/records/13862
+
+Dmytro Vasiliev 21:02
+https://www.google.com/search?client=firefox-b-d&q=cmus
+
+Максим 21:13
+vi /etc/apt/sources.list
+vi /etc/apt/sources.list.d/ubuntu.sources
+
+Максим 21:25
+sudo add-apt-repository
+
+Yurii Vilchynskyi 21:31
+https://docs.fluentbit.io/manual/installation/downloads/linux/ubuntu
+
+Максим 21:45
+sudo rm -rf /var/lib/apt/lists/* && sudo apt update
+sudo apt install ppa-purge  && sudo ppa-purge ppa:назва_проблемного_ppa
+
+Dmytro Vasiliev 21:47
+Пошук пакета
+apt search <назва>
+apt-cache search <назва>
+Інформація про пакет
+apt show <назва>
+Завантажити .deb (без встановлення)
+apt download <назва>
+Встановити локально завантажений .deb
+sudo apt install ./пакет.deb
+sudo apt install --only-upgrade <назва_пакета>
+#>
+
+
+sudo apt install nginx
+http://localhost:8080/
+localhost:8080
