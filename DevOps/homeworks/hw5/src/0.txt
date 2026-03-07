@@ -1,0 +1,36 @@
+### Bash scripting
+
+Exercise 1: Hello World
+Write a Bash script that simply echoes "Hello, World!" when executed.
+
+Exercise 2: User Input
+Create a script that asks the user for their name and then greets them using that name.
+
+Exercise 3: Conditional Statements
+Write a script that checks if a file exists in the current directory. If it does,
+ print a message saying it exists; otherwise, print a message saying it doesn't exist.
+
+Exercise 4: Looping
+Create a script that uses a loop to print numbers from 1 to 10.
+
+Exercise 5: File Operations
+Write a script that copies a file from one location to another. Both localtions should be passed as arguments
+
+Exercise 6: String Manipulation
+Build a script that takes a user's input as a sentence and then reverses the sentence word by word (e.g., "Hello World" becomes "World Hello").
+
+Exercise 7: Command Line Arguments
+Develop a script that accepts a filename as a command line argument and prints the number of lines in that file.
+
+Exercise 8: Arrays
+Write a script that uses an array to store a list of fruits. Loop through the array and print each fruit on a separate line.
+
+Exercise 9: Error Handling
+Develop a script that attempts to read a file and handles errors gracefully. If the file exists, it should print its contents; if not, it should display an error message.
+
+
+### Systemd service
+
+Write script which watching directory "~/watch". If it sees that there appeared a new file, it prints files content and rename it to *.back
+
+Write SystemD service for this script and make it running

@@ -1,0 +1,14 @@
+[Unit]
+Description=Watch ~/watch directory and process new files
+After=network.target
+
+[Service]
+Type=simple
+User=slavko
+WorkingDirectory=/home/slavko
+ExecStart=/home/slavko/watcher.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
