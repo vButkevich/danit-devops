@@ -1,0 +1,39 @@
+Today
+
+yurii 19:00
+добрий вечір
+
+dl 19:02
+Це лисий?)
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Yurii Vilchynskyi 19:08
+https://kodekloud.com/free-labs/linux
+
+ILLIA ZUBOV 19:09
+https://overthewire.org/wargames/bandit/bandit0.html
+
+Максим 19:12
+echo $?
+cmd
+echo %ERRORLEVEL%
+
+You 19:17
+LASTEXITCODE
+
+ILLIA ZUBOV 19:52
+&
+
+Максим 21:03
+# --- МАГИЯ «НЕВАЛЯШКИ» --- # Always — перезапускать в любом случае (даже если процесс завершился сам) # on-failure — только если упал с кодом ошибки или по сигналу (рекомендуется) Restart=always
+StartLimitIntervalSec=10 StartLimitBurst=5
+RestartSec=5
+
+Yurii Vilchynskyi 21:13
+https://youtu.be/aoag03mSuXQ?si=RmfP9tgryYwPhqBh
+
+Volodymyr 21:14
+https://www.cvedetails.com/
+
+Максим 22:08
+https://man7.org/linux/man-pages/man1/set.1p.html#:~:text=If%20no%20options%20or%20arguments%20are%20specified%2C,the%20collation%20sequence%20of%20the%20current%20locale.

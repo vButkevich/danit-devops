@@ -1,0 +1,44 @@
+du -sh
+
+df -h
+
+
+packages
+
+lesson: lms 6
+cron
+crontab
+
+systemd timer
+
+systemctl
+
+systemstl status nginx
+systemstl start nginx
+systemstl stop nginx
+
+#wls -l -d
+
+
+sudo systemctl enable nginx
+sudo systemctl disable nginx
+
+journalctl -xu nginx
+
+systemctl daemon reload
+
+vim .bashrc
+
+bashrcvariavles
+set -e
+set -u
+set -eu
+set -euo pipefail
+
+set -x
+
+culr -s 
+
+bashrc
+bashprofile
+
