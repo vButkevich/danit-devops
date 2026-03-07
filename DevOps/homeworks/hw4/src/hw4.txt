@@ -1,0 +1,193 @@
+##----------------------------------------------------------------------------------------------
+Створіть користувача з іменем "bob".
+
+slavko@ubuntu-server:~$ sudo adduser bob
+info: Adding user `bob' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `bob' (1005) ...
+info: Adding new user `bob' (1005) with group `bob (1005)' ...
+info: Creating home directory `/home/bob' ...
+info: Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for bob
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+info: Adding new user `bob' to supplemental / extra groups `users' ...
+info: Adding user `bob' to group `users' ...
+
+slavko@ubuntu-server:~$ id bob
+uid=1005(bob) gid=1005(bob) groups=1005(bob),100(users)
+##----------------------------------------------------------------------------------------------
+Додайте створеного користувача до групи sudo (щоб він міг виконувати команди як адміністратор).
+
+sudo usermod -aG sudo bob
+groups bob
+bob : bob sudo users
+
+##----------------------------------------------------------------------------------------------
+Створіть сценарій у каталозі /home/bob/, який під час виконання змінить ім'я хоста на "ubuntu22". 
+Атрибути виконання сценарію повинні бути встановлені виключно для користувача "bob".
+
+
+su bob
+
+cd
+
+pwd
+/home/bob
+
+ll
+total 20
+drwxr-x--- 2 bob  bob  4096 Mar  7 12:08 ./
+drwxr-xr-x 7 root root 4096 Mar  7 12:08 ../
+-rw-r--r-- 1 bob  bob   220 Mar  7 12:08 .bash_logout
+-rw-r--r-- 1 bob  bob  3771 Mar  7 12:08 .bashrc
+-rw-r--r-- 1 bob  bob   807 Mar  7 12:08 .profile
+
+nano change-hostname.sh
+
+ll
+total 28
+drwxr-x--- 3 bob  bob  4096 Mar  7 12:25 ./
+drwxr-xr-x 7 root root 4096 Mar  7 12:08 ../
+-rw-r--r-- 1 bob  bob   220 Mar  7 12:08 .bash_logout
+-rw-r--r-- 1 bob  bob  3771 Mar  7 12:08 .bashrc
+-rw-rw-r-- 1 bob  bob    52 Mar  7 12:25 change-hostname.sh
+drwxrwxr-x 3 bob  bob  4096 Mar  7 12:23 .local/
+-rw-r--r-- 1 bob  bob   807 Mar  7 12:08 .profile
+
+cat change-hostname.sh
+#!/bin/bash
+sudo hostnamectl set-hostname ubuntu22
+
+
+chmod 700 change-hostname.sh
+
+ll
+total 28
+drwxr-x--- 3 bob  bob  4096 Mar  7 12:25 ./
+drwxr-xr-x 7 root root 4096 Mar  7 12:08 ../
+-rw-r--r-- 1 bob  bob   220 Mar  7 12:08 .bash_logout
+-rw-r--r-- 1 bob  bob  3771 Mar  7 12:08 .bashrc
+-rwx------ 1 bob  bob    52 Mar  7 12:25 change-hostname.sh*
+drwxrwxr-x 3 bob  bob  4096 Mar  7 12:23 .local/
+-rw-r--r-- 1 bob  bob   807 Mar  7 12:08 .profile
+bob@ubuntu-server:~$
+
+##----------------------------------------------------------------------------------------------
+Запустіть сценарій. Перезавантажте систему. Увійти в систему як користувач "bob".
+
+./change-hostname.sh
+
+hostname
+ubuntu22
+
+sudo reboot
+
+ssh -p 2222 bob@127.0.0.1 
+
+w
+ 12:41:42 up 0 min,  1 user,  load average: 0.51, 0.11, 0.04
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU  WHAT
+bob               10.0.2.2         12:41     ?     0.00s  0.03s sshd: bob [priv]
+
+
+who
+slavko   tty1         2026-03-07 12:41
+bob      pts/0        2026-03-07 12:41 (10.0.2.2)
+
+
+bob@ubuntu22:~$ whoami
+bob
+
+
+id
+uid=1005(bob) gid=1005(bob) groups=1005(bob),27(sudo),100(users)
+
+##----------------------------------------------------------------------------------------------
+Встановіть "nginx". Перевірте, чи працює nginx, 
+а також використайте netstat, щоб побачити, які порти відкриті.
+
+sudo apt install nginx
+[sudo] password for bob: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+nginx is already the newest version (1.24.0-2ubuntu7.6).
+0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+
+
+
+systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-03-07 12:41:26 UTC; 5min ago
+       Docs: man:nginx(8)
+    Process: 974 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 979 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 984 (nginx)
+      Tasks: 5 (limit: 4600)
+     Memory: 5.1M (peak: 5.3M)
+        CPU: 31ms
+     CGroup: /system.slice/nginx.service
+             ├─984 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─985 "nginx: worker process"
+             ├─986 "nginx: worker process"
+             ├─987 "nginx: worker process"
+             └─988 "nginx: worker process"
+
+Warning: some journal files were not opened due to insufficient permissions.
+
+
+curl localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+
+rewiew siti in terminal
+lynx localhost
+w3m localhost
+
+
+
+sudo netstat -tulpn
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1/init
+tcp        0      0 127.0.0.54:53           0.0.0.0:*               LISTEN      663/systemd-resolve
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      984/nginx: master p
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      663/systemd-resolve
+tcp6       0      0 :::22                   :::*                    LISTEN      1/init
+tcp6       0      0 :::80                   :::*                    LISTEN      984/nginx: master p
+udp        0      0 127.0.0.54:53           0.0.0.0:*                           663/systemd-resolve
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           663/systemd-resolve
+udp        0      0 10.0.2.15:68            0.0.0.0:*                           656/systemd-network
+##----------------------------------------------------------------------------------------------
