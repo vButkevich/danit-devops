@@ -1,0 +1,148 @@
+Завдання 1: Керування користувачами та групами
+1. Створення облікових записів користувачів:
+Створіть облікові записи користувачів для розробників: «dev1», «dev2» і «dev3».
+
+
+2. Створення груп:
+Створіть дві групи: "developers" and "webmasters."
+
+
+3. Призначення користувачів до груп:
+Додайте «dev1» і «dev2» до групи «developers».
+Додайте «dev3» до групи «webmasters».
+
+
+4. Встановити групу за замовчуванням для користувачів:
+Переконайтеся, що групою за умовчанням для кожного розробника встановлено «developers».
+
+
+5. Створення домашніх каталогів:
+Створіть домашні каталоги для кожного розробника в каталозі "/home".
+
+
+
+6. Клонуйте обліковий запис користувача:
+Створіть нового користувача "backupdev" і клонуйте домашній каталог "dev1" для цього користувача.
+
+
+
+7. Налаштування дозволів для спільного проєкту:
+Створіть каталог під назвою "web_project" у "/home".
+Дозвольте групі «developers» доступ для читання та запису.
+
+
+
+8. Незмінний файл журналу:
+Створіть файл my.log у /home dir, забороніть будь-кому писати в нього, окрім додавання нового вмісту в кінець файлу.
+
+
+
+
+Завдання 2: Моніторинг використання диска
+Напишіть сценарій і налаштуйте crontab для запуску цього сценарію,
+ який перевірятиме використання вашого обсягу /,
+  і якщо воно перевищує X відсотків (налаштовується в crontab),
+ він записуватиме попереджувальне повідомлення у файл журналу /var/log/disk.log .
+
+
+
+
+
+Завдання 3: Конфігурація Monit для моніторингу Nginx
+Створіть конфігурацію Monit для моніторингу служби nginx. Моніторинг повинен перевіряти, чи доступна служба на порту 80 локального хосту. Якщо служба все ще недоступна після семи перевірок, Monit припиняє спроби перезапуску.
+
+
+
+
+
+Читати:
+Перевірити пакет
+Документація Monit
+
+
+
+
+ENG:
+
+
+
+
+
+Task 1: User and Group Management
+Create User Accounts:
+Create user accounts for developers: "dev1," "dev2," and "dev3."
+Create Groups:
+Create two groups: "developers" and "webmasters."
+Assign Users to Groups:
+Add "dev1" and "dev2" to the "developers" group.
+Add "dev3" to the "webmasters" group.
+Set Default Group for Users:
+Ensure that the default group for each developer is set to "developers."
+Create Home Directories:
+Create home directories for each developer in the "/home" directory.
+Clone a User Account:
+Create a new user "backupdev" and clone the home directory of "dev1" for this user.
+Set Permissions for a Shared Project:
+Create a directory called "web_project" in "/home."
+Allow read and write access to the "developers" group.
+Immutable log file:
+Create a my.log file at /home dir, prevent anyone from writing to it except to add new content to the end of the file.
+
+
+
+
+Task 2: Disk Utilization Monitoring
+Write a script and set up crontab to run this script which will check your / volume utilization and if it is higher than X percent (configurable in crontab), it will write a warning message to the log file /var/log/disk.log.
+
+
+
+
+
+Task 3: Monit Configuration for Nginx Monitoring
+Create configuration of Monit for monitoring nginx service. Monitoring should check if the service is available on port 80 of the local host. If the service is still not available after seven checks, the monit stops restart attempts.
+
+
+
+
+
+To Read
+Package verify
+Monit documentation
+
+
+
+
+Формат здачі ДЗ:
+
+Завдання 1
+
+1. Скрін створення облікових записів
+
+2. Скрін створення груп
+
+3. Скрін призначення користувачів до груп
+
+4. Скрін користувачів в групі "розробники" за замовчуванням 
+
+5. Скрін створення домашніх каталогів
+
+6. Скрін створення користувача й клонування домашнього каталогу dev1
+
+7. Скрін створення каталогу й надання дозволів
+
+8. Скрін надання прав доступу для файлу
+
+Завдання 2
+
+1. Скрін змісту crontab 
+
+2. Скрін роботи скрипта
+
+3. Скрін змісту файла /var/log/disk.log
+
+Завдання 3
+
+1. Код конфіга Monit.
+
+2. Скріни роботи Monit (сервіс й веб)
+
