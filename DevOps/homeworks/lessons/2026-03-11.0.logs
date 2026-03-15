@@ -1,0 +1,28 @@
+logd
+
+/vsr/log/...
+
+видалення логів
+log rretention/rotate
+
+x -days   видаляти через/за х
+journald
+
+logrotate delte after x days
+compress logs
+
+logrotate configuration
+/etc/logrotate.d
+
+#-------------------------------------------------------
+regexp
+
+#-------------------------------------------------------
+sed
+
+#-------------------------------------------------------
+vagrant
+
+create VM
+
+vagrantBoxes

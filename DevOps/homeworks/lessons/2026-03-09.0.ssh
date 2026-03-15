@@ -1,0 +1,43 @@
+--ststus:
+sudo systemctl status ssh
+sudo systemctl restart ssh
+
+--config:
+sudo less /etc/ssh/sshd_config
+
+--ubuntu24
+--service run by socket
+sudo less /lib/systemd/system/ssh.service
+sudo less /lib/systemd/system/ssh.socket
+--rollback
+sudo systemctl disable --now ssh.socket
+sudo systemctl enable ssh.service
+
+
+-- ---------------------------------------------------------------------
+--connect by ssh-keys
+-- 1. Generate SSH key (on local mashine) by command  ssh-keygen
+ssh-keygen [-t rsa -b 4096]
+-- 2. Copy publik key into seerver
+--      copy content from <keyfile>.pub [id_ed25519.pub] to authorized_keys
+-- ssh -p <PORT> <USERNAME@SERVER_IPADDRESS>
+ssh -p 2222 slavko@127.0.0.1
+-- 3. for connection by private key
+sudo -i <PRIVATE_KEY_PATH> -p 2222 slavko@127.0.0.1
+-- ----------------------------------------------------------------------
+
+
+
+-- ----------------------------------------------------------------------
+nmap -o
+-- ----------------------------------------------------------------------
+RustDesc
+-- ----------------------------------------------------------------------
+
+
+
+PermitRootLogin no
+PasswordAuthentication no
+PermitEmptyPasswords no
+MaxAuthTries 3
+AllowUsers ubuntu devopsuser

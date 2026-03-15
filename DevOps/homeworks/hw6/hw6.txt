@@ -1,0 +1,64 @@
+HW 6
+
+Сценарій генерує випадкове число від 1 до 100 і зберігає його в змінній.
+Користувачеві пропонується вгадати число.
+Якщо припущення користувача правильне, сценарій має надрукувати «Вітаємо! Ви вгадали правильне число». і вихід.
+Якщо припущення користувача неправильне, сценарій має надати зворотний зв’язок, 
+як-от «Занадто високо» або «Занадто низько», і дозволити користувачеві вгадати ще раз.
+Користувач повинен мати максимум 5 спроб, щоб вгадати правильне число.
+Після 5 невдалих спроб сценарій має надрукувати «Вибачте, у вас закінчилися спроби.
+Правильним числом було [правильний номер]» і завершити роботу.
+
+Створіть користувача john із домашньою папкою за типовим шляхом.
+
+Встановіть і налаштуйте SSH-сервер, який прослуховує порт 2222, 
+обмежуючи кореневий доступ і забороняючи авторизацію пароля. 
+Тільки john може підключитися до вашого сервера і лише за допомогою ключа ssh.
+
+
+Паралельно запустіть ssh у режимі налагодження,
+ прослуховуючи порт 3333, без обмежень на підключення користувача (окрім root),
+  з можливістю підключення за паролем і ключем ssh.
+
+Спробуйте підключитися до ваших серверів. 
+Перевірте статус обох ваших серверів ssh.
+
+
+До прочитання:
+
+hyperhost.ua/info/ru/ssh-zachem-i-dlya-chego?gclid=CjwKCAjwgsqoBhBNEiwAwe5w0-9GKSubnXkZD-KXj1-_QGQ08MMSabUK3H1ccYhS6EgIllwK_gQGdBoCS6UQAvD_BwE
+
+
+
+
+
+ENG:
+
+
+
+
+
+The script generates a random number between 1 and 100 and stores it in a variable. The user is asked to guess the number. If the user's guess is correct, the script should print "Congratulations! You guessed the right number." and exit. If the user's guess is incorrect, the script should provide feedback like "Too high" or "Too low" and allow the user to guess again. The user should have a maximum of 5 attempts to guess the correct number. After 5 incorrect attempts, the script should print "Sorry, you've run out of attempts. The correct number was [the correct number]" and exit.
+Create user john with home folder at default path.
+Install and configure an SSH server listening on port 2222, restricting root access and disallowing password authorization. Only john can connect to your server and only with an ssh key.
+In parallel, run ssh in debug mode listening on port 3333, with no user connection restrictions (except root), with the ability to connect by password and ssh key.
+Try connecting to your servers. Check the status of both your ssh servers.
+
+
+
+
+To read
+hyperhost.ua/info/ru/ssh-zachem-i-dlya-chego?gclid=CjwKCAjwgsqoBhBNEiwAwe5w0-9GKSubnXkZD-KXj1-_QGQ08MMSabUK3H1ccYhS6EgIllwK_gQGdBoCS6UQAvD_BwE
+
+
+
+
+
+Формат здачі ДЗ:
+
+1. Код скрипта й скрін його роботи
+2. Скрін створення користувача
+
+3. Конфігураційний файл SSH сервера, скріни роботи й підключення
+
+4. Конфігураційний файл SSH сервера, скріни роботи в режимі налагодження
