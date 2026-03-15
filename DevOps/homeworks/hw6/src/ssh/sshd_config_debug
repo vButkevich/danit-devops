@@ -1,0 +1,23 @@
+# Порт для налагоджувального сервера
+Port 3333
+
+# Дозволити root доступ (з обмеженнями)
+PermitRootLogin prohibit-password
+
+# Дозволити авторизацію за паролем
+PasswordAuthentication yes
+
+# Дозволити авторизацію за ключами
+PubkeyAuthentication yes
+
+# Без обмежень на користувачів (окрім політики для root)
+# Не використовуємо AllowUsers
+
+# Шлях до файлу з ключами
+AuthorizedKeysFile .ssh/authorized_keys
+
+# Додаткові налаштування для налагодження
+LogLevel DEBUG3
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server

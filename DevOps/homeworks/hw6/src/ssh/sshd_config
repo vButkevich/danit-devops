@@ -1,0 +1,19 @@
+#/etc/ssh/sshd_config
+
+# Зміна порту на 2222
+Port 2222
+
+# Заборона root доступу
+PermitRootLogin no
+
+# Відключення авторизації за паролем
+PasswordAuthentication no
+
+# Дозвіл тільки для користувача john
+AllowUsers john
+
+# Включення авторизації за ключами
+PubkeyAuthentication yes
+
+# # Вказівка на файл з дозволеними ключами
+# AuthorizedKeysFile .ssh/authorized_keys
