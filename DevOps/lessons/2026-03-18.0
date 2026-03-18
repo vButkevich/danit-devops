@@ -1,0 +1,42 @@
+2026-03-08
+
+virtualBox.network
+
+NAT
+
+
+
+Task 2. Copy file
+
+You need to copy file from one machine to another.
+IP Address:  (Запитати у вчителя ІР адресу сервера)
+SSH PrivateKey / Password:   (Запитати у вчителя приватний ключ / пароль для SSH)
+You have 3 machines. There are 3 files on each of them. Files located: /home/ubuntu/file{number of machine}.txt
+You need to copy:
+
+File1 from machine1 to machine2 via public network
+File1 from machine2 to machine3 via private network
+Try to copy file2 from machine2 to machine1 via private network
+
+Task 2.1. Understand and draw network topology
+
+
+vm1: 98.81.123.224
+vm2: 98.81.123.224
+vm3: 3.80.97.122
+
+vm1: 98.81.123.224
+
+Yurii Vilchynskyi 20:24 (Edited)
+vm2:54.234.170.224
+
+Yurii Vilchynskyi 20:24
+vm3: 3.80.97.122
+
+#-- -------------------------------------
+DNS
+
+dig +trace google.com
+
+
+

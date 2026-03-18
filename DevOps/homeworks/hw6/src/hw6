@@ -74,3 +74,9 @@ sudo systemctl daemon-reload
 sudo systemctl restart ssh
 sudo systemctl status ssh
 
+###############################################################################
+
+
+ssh -p 2222 -i C:\Slavko\DAN-IT\DevOps\.ssh\hw6\id_ed25519.john john@localhost
+ssh -p 2222 -i C:\Slavko\DAN-IT\DevOps\.ssh\id_ed25519.slavko slavko@localhost
+
