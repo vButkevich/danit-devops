@@ -1,0 +1,59 @@
+HW 8
+
+
+Завдання: Vagrant
+Вам потрібно створити та ініціалізувати проєкт Vagrant. 
+Це має бути проєкт на основі ubuntu. Налаштуйте файл Vagrant, 
+щоб розкрутити одну віртуальну машину з публічною мережею та встановити nginx через ініціалізацію. 
+Nginx має працювати на порту 82 (замініть порт на «sed» у підготовці). 
+У результаті ви маєте відкрити сторінку nginx у своєму веб-переглядачі та побачити сторінку «Welcome to nginx».
+ (Або ви можете створити власну «сторінку привітання», якщо хочете :) )
+
+
+
+
+
+Читати
+Установка Nginx на ubuntu
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+Vagrant документація
+https://developer.hashicorp.com/vagrant/docs
+
+Vagrant Cloud (коробки)
+https://portal.cloud.hashicorp.com/vagrant/discover
+
+Приклади використання команди Sed
+https://devzone.org.ua/post/komanda-sed-u-linuxunix-na-prykladakh
+
+
+
+ENG:
+
+First, you need to create and init a Vagrant project.
+ It should be an ubuntu based project. Configure the Vagrant 
+ file to spin up a single virtual machine with a public network and install
+  nginx via provisioning. Nginx should be running on port 82 (replace port via 
+  'sed' in provisioning). As a result, you should open the nginx page in your host
+   browser and see the "Welcome to nginx" page. (Or you can create your own "welcome page"
+    if you'd like :) )
+
+
+
+
+
+To Read
+Nginx installation on ubuntu
+Vagrant documentation
+Vagrant Cloud (boxes)
+Sed command examples of usage
+
+
+
+
+Формат здачі ДЗ:
+
+﻿1. Код змісту Vagrantfile
+
+2. Скрін сторінки, яку відображає nginx на 82му порті
+

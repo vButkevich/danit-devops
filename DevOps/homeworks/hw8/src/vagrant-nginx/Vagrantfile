@@ -1,0 +1,62 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+
+  # ---------------- NETWORK ----------------
+
+  # Public network (bridged)
+  config.vm.network "public_network"
+
+  # SSH: localhost:2208 -> VM:22
+  config.vm.network "forwarded_port",
+    guest: 22,
+    host: 2208,
+    id: "ssh",
+    auto_correct: true
+
+  # HTTP: localhost:8082 -> VM:82
+  config.vm.network "forwarded_port",
+    guest: 82,
+    host: 8082,
+    auto_correct: true
+
+  # ---------------- PROVIDER ----------------
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "ubuntu-nginx-hw8"
+    vb.memory = 4096
+    vb.cpus = 4
+  end
+
+  # ---------------- PROVISION ----------------
+
+  config.vm.provision "shell", inline: <<-SHELL
+    set -eux
+
+    # Install nginx
+    apt-get update
+    apt-get install -y nginx
+
+    # Change port 80 -> 82
+    sed -i 's/listen 80 default_server;/listen 82 default_server;/' /etc/nginx/sites-available/default
+    sed -i 's/listen \\[::\\]:80 default_server;/listen [::]:82 default_server;/' /etc/nginx/sites-available/default
+
+    # Optional: custom welcome page
+    cat > /var/www/html/index.nginx-debian.html <<'EOF'
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vagrant Nginx</title>
+</head>
+<body>
+  <h1>Welcome to nginx (port 82)</h1>
+  <p>Provisioned via Vagrant</p>
+</body>
+</html>
+EOF
+
+    systemctl enable nginx
+    systemctl restart nginx
+    systemctl status nginx --no-pager
+  SHELL
+end
