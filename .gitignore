@@ -4,6 +4,9 @@ DevOps/downloads/
 DevOps/git_demo/
 DevOps/hw/
 
+.aws/
 .ssh/
 
 .vagrant/
+
+
