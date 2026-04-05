@@ -1,0 +1,97 @@
+Today
+
+dl 19:03
+Про GitHub actions хотілось би детальніше
+Вебхуки і всяке таке
+If mysql just run CLI 
+mysql -u root <<EOF
+CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
+CREATE USER IF NOT EXISTS '${DB_USER}'@'${SUBNET}' IDENTIFIED BY '${DB_PASS}';
+GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'${SUBNET}';
+FLUSH PRIVILEGES;
+EOF
+
+Dmytro Vasiliev 19:09
+psql -U postgres -d mnamebasedb -c "SELECT sum(pg_database_size(datname)) FROM pg_database;"
+розмір окремої БД
+psql -U postgres -d mnamebasedb -c "SELECT pg_size_pretty(pg_database_size('mnamebasedb'));"
+
+Yurii Vilchynskyi 19:13
+https://github.com/spring-projects/spring-petclinic
+
+dl 19:14
+І так буде завжди)
+Коли щось нове деплоїш
+
+Dmytro Vasiliev 19:15 (Edited)
+так, це був дрібний головняк, поки не додумався пришити іп у вагрант
+
+ILLIA ZUBOV 19:25
+sudo apt update
+sudo apt install -y postgresql-common
+sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+sudo apt install postgresql-18
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+ILLIA ZUBOV 19:26
+18 ю надо только
+
+Dmytro Vasiliev 19:29
+а інсталл коммон потрібен для чогось?
+але якщо у скрипті то apt -y update
+
+dl 19:31
+https://store.steampowered.com/app/4170200/Data_Center/  😀
+
+Dmytro Vasiliev 19:56
+треба репо з ключами зносити
+
+Dmytro Vasiliev 19:59 (Edited)
+до речі стикався що в інструкції на сайті був прострочений ключ репо. 
+може бути що в автоматичному скрипті інша версія підпису встановилась минулого разу
+
+Dmytro Vasiliev 20:03
+може конфіги зразу варто змінити?
+
+Dmytro Vasiliev 20:05
+вже професійне питання: бо якщо це не зробити ЗРАЗУ  можна замучитись питанням чого база не конектиться)
+
+Dmytro Vasiliev 20:06 (Edited)
+через sed або перезалити весь конфіг
+
+Dmytro Vasiliev 20:09
+в дефолтному рядку такому то змінити 127.0.0.1 на потбрібне
+
+Dmytro Vasiliev 20:10 (Edited)
+до речі чат жпт норм Українську розуміє)
+
+dl 20:11
+до речі чат жпт норм Українську розуміє)
+Бо він грузить агента перекладача, артефактів на виході може бути більше
+
+Dmytro Vasiliev 20:19
+варто б ще й конфіги перевірити
+systemctl status postgresql
+
+Dmytro Vasiliev 20:26
+sudo -u postgres psql -c "SHOW server_version;"
+history можуть бути?
+CREATE USER юзер WITH PASSWORD '1111111';
+CREATE DATABASE базаданих;
+GRANT ALL PRIVILEGES ON DATABASE базаданих to юзер;
+
+dl 21:21
+Навіть 3
+Environment="SPRING_DATASOURCE_URL=jdbc:mysql://${DB_HOST}:${DB_PORT:-3306}/${DB_NAME}"
+
+dl 21:38
+Там в manual до SP так і написано
+
+Dmytro Vasiliev 21:39 (Edited)
+а у нас в понеділок ще одне заняття і перерва на степ проджект?
+
+dl 21:47 (Edited)
+Тепер озиратися треба
+
+Dmytro Vasiliev 21:47
+@Volodymyr Vystavkin на які служби ви працюєте?)))

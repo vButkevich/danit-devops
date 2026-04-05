@@ -1,0 +1,51 @@
+# Which interface should the network bridge to?
+# # Set this env variable to avoid interactive selection of bridge interface
+bridge_name = ENV['BRIDGE_IFACE'] || nil 
+bridge_name = ENV['BRIDGE_IFACE'] || 'Realtek PCIe 2.5GbE Family Controller' 
+if bridge_name.nil? || bridge_name.empty?
+    puts "⚠️ BRIDGE_IFACE not set → fallback to interactive selection"
+  else
+    puts "Using bridge: #{bridge_name}"
+  end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+  end
+
+  config.vm.define "app_vm" do |app|
+    app.vm.hostname = "app-vm"
+    # app.vm.network "public_network"
+    # app.vm.network "public_network", bridge: bridge_name
+    # app.vm.network "public_network", bridge: "Realtek PCIe 2.5GbE Family Controller"
+    app.vm.network "private_network", ip: "192.168.99.11"
+
+    app.vm.synced_folder "./app", "/var/www/app", create: true
+
+    app.vm.provider "virtualbox" do |vb|
+      vb.name = "APP_VM"
+      vb.memory = 4096
+      vb.cpus = 4
+    end
+
+    # app.vm.provision "shell", path: "provision/app.sh", privileged: true
+  end
+
+  config.vm.define "db_vm" do |db|
+    db.vm.hostname = "db-vm"
+    # db.vm.network "public_network"
+    # db.vm.network "public_network", bridge: bridge_name
+    # db.vm.network "public_network", bridge: "Realtek PCIe 2.5GbE Family Controller"
+    db.vm.network "private_network", ip: "192.168.99.10"
+
+    db.vm.provider "virtualbox" do |vb|
+      vb.name = "DB_VM"
+      vb.memory = 8192
+      vb.cpus = 8
+    end
+
+    db.vm.provision "shell", path: "provision/db-postgres.sh", privileged: true
+  end
+end
