@@ -1,0 +1,86 @@
+
+
+
+rename branch in gitlab from aaa-xxx to features/aaa-xxx
+
+
+Thought for 10s
+Here’s the clean + safe way to rename a branch from aaa-xxx to features/aaa-xxx in Git (GitLab remote).
+
+If you have the branch locally
+# 1) Make sure you have the latest
+git fetch origin
+
+# 2) Rename the local branch
+git branch -m aaa-xxx features/aaa-xxx   # run this while checked out to aaa-xxx, or add the old name if not
+
+# 3) Push the new branch name and set upstream
+git push -u origin features/aaa-xxx
+
+# 4) Delete the old branch name on the remote
+git push origin :aaa-xxx
+If you don’t have it locally (just copy remote → new name)
+git fetch origin
+git checkout -b features/aaa-xxx origin/aaa-xxx
+git push -u origin features/aaa-xxx
+git push origin :aaa-xxx
+Notes / gotchas
+Protected branch? Unprotect aaa-xxx in GitLab → delete old → re-protect features/aaa-xxx.
+
+Open Merge Requests: GitLab treats this as a new branch. Edit each MR and change the Source branch to features/aaa-xxx (or open a new MR and close the old one).
+
+CI/CD & rules: If your pipeline has branch-name rules, update them for features/*.
+
+Teammates: They should run:
+
+git fetch -p
+git checkout features/aaa-xxx
+git branch -u origin/features/aaa-xxx
+Default branch? If aaa-xxx was the default branch (rare for feature work), change the default in GitLab settings before deleting, then update rules/protections.
+
+That’s it—your branch is now features/aaa-xxx.
+
+
+------------------------------------------------------------------------
+To rename a branch in Git, you need to be on the branch you want to rename (or specify the old name).
+
+Rename the current branch
+bash
+git branch -m new-branch-name
+Rename a different branch
+bash
+git branch -m old-branch-name new-branch-name
+After renaming (if already pushed to remote)
+If you've already pushed the branch to a remote repository (like GitHub, GitLab, or Bitbucket), you need to:
+
+Delete the old branch from remote:
+
+bash
+git push origin --delete old-branch-name
+Or (older Git versions):
+
+bash
+git push origin :old-branch-name
+Push the new branch and set upstream:
+
+bash
+git push origin -u new-branch-name
+Example
+bash
+# Rename current branch 'feature/login' to 'feature/auth'
+git checkout feature/login
+git branch -m feature/auth
+
+# Update remote
+git push origin --delete feature/login
+git push origin -u feature/auth
+Important Notes
+-m stands for "move" (rename)
+
+Use -M to force rename (if new name already exists)
+
+Your teammates will need to re-base or re-pull their local branches after you rename a shared branch
+
+Always communicate branch renames to your team
+
+

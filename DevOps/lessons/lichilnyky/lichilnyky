@@ -1,0 +1,12 @@
+lichilnyky
+
+sudo mkdir -p /var/www/mysite
+sudo chown -R $USER:$USER /var/www/mysite
+
+scp -r ./build/* ec2-user@YOUR_SERVER_IP:/var/www/lichilnyky/
+scp -r ./build/* ubuntu@54.87.56.24:/var/www/lichilnyky/
+
+scp -r C:\Slavko\Counters\dist\* ubuntu@54.87.56.24:/var/www/lichilnyky/
+
+
+scp -i mykey.pem -r ./build/* ubuntu@YOUR_SERVER_IP:/var/www/mysite/

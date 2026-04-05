@@ -31,6 +31,8 @@ Develop a script that attempts to read a file and handles errors gracefully. If 
 
 ### Systemd service
 
-Write script which watching directory "~/watch". If it sees that there appeared a new file, it prints files content and rename it to *.back
+Write script which watching directory "~/watch".
+ If it sees that there appeared a new file,
+  it prints files content and rename it to *.back
 
 Write SystemD service for this script and make it running

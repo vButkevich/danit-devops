@@ -130,7 +130,17 @@ start_petclinic_application() {
     info "Petclinic service started"
 } 
 
-check_db_connection() {
+check_db_connection1() {
+    info "Checking.1 database connection to ${DB_HOST}:${DB_PORT}"
+
+    if psql -h "${DB_HOST}" -U "${DB_USERNAME}" -d "${DB_NAME}" -c "SELECT 1;" > /dev/null 2>&1; then
+        info "Database connection successful"
+    else
+        echo "ERROR: Cannot connect to database ${DB_HOST}:${DB_PORT}/${DB_NAME}" >&2
+        # exit 1
+    fi
+}
+check_db_connection2() {
     info "Checking database connection to [${DB_HOST}:${DB_PORT}/${DB_NAME}]"
 
     if PGPASSWORD="test2test" psql \
@@ -144,18 +154,23 @@ check_db_connection() {
         echo "ERROR: Cannot connect to [${DB_HOST}:${DB_PORT}/${DB_NAME}]" >&2
         exit 1
     fi
+}
+check_db_connection3() {
+    info "Checking.3 database connection to [${DB_HOST}:${DB_PORT}]"
+    echo "192.168.99.10:5432:test:test:test2test" > ~/.pgpass
+    chmod 600 ~/.pgpass
+    # psql -h "${DB_HOST}" -U test -d testpsql -p "${DB_PORT}"
+    su postgres -c "psql -h 192.168.99.10 -U test -d test -p 5432 -c 'SELECT version();'"
+    info "Database connection.3.1 check completed"
 
-        if PGPASSWORD="12345678" psql \
-        -h "192.168.99.10" \
-        -U "appuser" \
-        -d "petclinic" \
-        -p "5432" \
-        -c "SELECT version();" 2>&1; then
-        info "Database [${DB_NAME}] connection successful"
-    else
-        echo "ERROR: Cannot connect to [${DB_HOST}:${DB_PORT}/${DB_NAME}]" >&2
-        exit 1
-    fi
+    PGPASSWORD="123test2test" psql -h 192.168.99.10 -U test -d test -c "\dt"
+
+    # if psql -h "${DB_HOST}" -U test -d test -p "${DB_PORT}" -c "SELECT 1;" > /dev/null 2>&1; then
+    #     info "Database connection successful"
+    # else
+    #     echo "ERROR: Cannot connect to database ${DB_HOST}:${DB_PORT}/${DB_NAME}" >&2
+    #     # exit 1
+    # fi
 }
 #--------------------------------------------------------------------
 main() {
@@ -171,7 +186,9 @@ main() {
     create_petclinic_service
     start_petclinic_application
 
-    check_db_connection
+    check_db_connection1
+    check_db_connection2
+    check_db_connection3
 
   info "End script: ${SCRIPT}"
 }

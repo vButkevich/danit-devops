@@ -1,0 +1,16 @@
+[Unit]
+Description=Spring PetClinic Application
+After=network.target
+
+[Service]
+User=vagrant
+WorkingDirectory=${APP_DIR}
+Environment=SPRING_PROFILES_ACTIVE=postgres
+Environment=POSTGRES_URL=jdbc:postgresql://192.168.99.10:5432/petclinic
+Environment=POSTGRES_USER=${DB_USERNAME}
+Environment=POSTGRES_PASS=${DB_PASSWORD}
+ExecStart=/usr/bin/java -jar /home/vagrant/spring-petclinic/target/spring-petclinic-4.0.0-SNAPSHOT.jar
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

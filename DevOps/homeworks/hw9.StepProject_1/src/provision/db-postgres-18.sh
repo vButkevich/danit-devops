@@ -7,11 +7,6 @@ else
   source "$SCRIPT_DIR/lib/common.sh"
 fi
 #--------------------------------------------------------------------
-PREREQUISITES=(
-  curl
-  ca-certificates
-)
-# --------------------------------------------------------------------
 # require_root() {
 #   if [[ $EUID -ne 0 ]]; then
 #     echo "ERROR: run as root" >&2
@@ -24,38 +19,36 @@ PREREQUISITES=(
 #   DATETIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 #   echo ">>> [${DATETIMESTAMP}]: Info: ${msg} "
 # }
-#--------------------------------------------------------------------
-# install_prerequisites() {
-#   info "Updating repos"
-#   apt-get update -y >/dev/null
 
-#   for prerequisite in "${PREREQUISITES[@]}"; do
-#     info "Installing prerequisite: [${prerequisite}]"
-#     apt-get install -y "${prerequisite}" >/dev/null
-#   done
-# }
-
-install_postgres() {
-  info "Installing postgresql-common"
-  apt-get install -y postgresql-common >/dev/null
-
-  info "Configuring official PGDG repository"
-  /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-}
-install_postgres18() {
+install_postgres_18() {
   info "Installing PostgreSQL 18"
   apt-get install -y postgresql-18 >/dev/null
 }
 
+configure_postgres_18() {
+  local pg_conf="/etc/postgresql/18/main/postgresql.conf"
+  local pg_hba="/etc/postgresql/18/main/pg_hba.conf"
 
+  info "Updating postgresql.conf"
+  sed -i -E "s#^[#[:space:]]*listen_addresses[[:space:]]*=.*#listen_addresses = '*'#" "$pg_conf"
+
+  info "Ensuring pg_hba.conf contains remote access rule"
+  if ! grep -q '^host all all 0.0.0.0/0 scram-sha-256$' "$pg_hba"; then
+    echo 'host all all 0.0.0.0/0 scram-sha-256' >> "$pg_hba"
+  fi
+
+  info "Restarting PostgreSQL"
+  systemctl restart postgresql
+  systemctl enable postgresql >/dev/null 2>&1 || true
+}
 #--------------------------------------------------------------------
 main() {
   require_root
-  SCRIPT="DB provisioning for [PostgreSQL]"
+  SCRIPT="DB provisioning for [PostgreSQL-18]"
   info "Start script: ${SCRIPT}"
 
-  install_prerequisites
-  install_postgres
+  install_postgres_18
+  configure_postgres_18
 
   info "End script: ${SCRIPT}"
 }
