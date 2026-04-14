@@ -76,8 +76,9 @@ postgres_setup_petclinic() {
     sudo -u postgres psql -c "CREATE DATABASE ${DBNAME};"
 
   sudo -u postgres psql -tc "SELECT 1 FROM pg_roles WHERE rolname='${DBUSER}'" | grep -q 1 ||
-    sudo -u postgres psql -c "CREATE USER ${DBUSER} WITH PASSWORD '${DBPASSWORD}';"
+    sudo -u postgres psql -c "CREATE USER ${DBUSER} WITH PASSWORD '${DBPASSWORD}' SUPERUSER;"
   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${DBNAME} TO ${DBUSER};"
+  # sudo -u postgres psql -c "ALTER ROLE ${DBUSER} SUPERUSER;"
   # sudo -u postgres psql -c "GRANT ALL ON SCHEMA public TO ${DBUSER};"
   # sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${DBUSER};"
   # sudo -u postgres psql -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO ${DBUSER};"
