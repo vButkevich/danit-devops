@@ -1,0 +1,22 @@
+webserver
+apache
+nginx
+
+
+http: [80]
+https: [443]
+
+sudo apt update
+suda apt install apache-2
+
+configs
+/etc/
+
+
+http
+https
+
+sertificates
+
+openSSL
+

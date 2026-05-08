@@ -1,0 +1,79 @@
+Today
+
+dl 19:07 (Edited)
+Нано боти наше все)
+
+dl 19:08
+Копія 100%
+
+dl 19:09
+@Yurii Vilchynskyi  Натравіть клод на наші репки та й всьо)
+
+Aleksey Voronov 19:17
++
+
+Volodymyr Vystavkin 19:18
++
+
+Yurii Vilchynskyi 19:20
+https://gitlab.com/dan-it/groups/devops_14/-/blob/main/m5/l2/task.md?ref_type=heads
+
+Volodymyr Vystavkin 19:25
+да
+у меня норм пришел код
+
+Максим 19:43
+Як встановити:
+Клонуйте репозиторій: git clone https://github.com/perusio/nginx_ensite.git.
+Перейдіть у папку: cd nginx_ensite.
+Встановіть: sudo make install.
+Після цього вам стануть доступні команди:
+sudo nginx_ensite назва_сайту
+sudo nginx_dissite назва_сайту
+
+Dmytro Vasiliev 19:58
+то це субдомени
+
+Максим 20:08
+C:\Windows\System32\drivers\etc\hosts
+
+Dmytro Vasiliev 20:09
+можна ще раз де ми вхост обізвали?
+
+Максим 20:24 (Edited)
+AddType application/x-httpd-php .php
+
+Yurii Vilchynskyi 20:47
+server {
+listen 80;
+server_name site1.local;
+
+root /var/www/site1;
+index index.html;
+
+location / {
+try_files $uri $uri/ =404;
+}
+}
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Dmytro Vasiliev 20:47
+через ln по класиці)
+
+Dmytro Vasiliev 20:50
+basic auth
+
+Yurii Vilchynskyi 20:53
+server {
+listen 80;
+server_name site1.local;
+
+root /var/www/html/site1;
+index index.html;
+
+location / {
+auth_basic "Restricted Access";
+auth_basic_user_file /etc/nginx/.htpasswd;
+try_files $uri $uri/ =404;
+}
+}

@@ -1,0 +1,264 @@
+Today
+
+Dmytro Vasiliev 19:00
+просто це треба вивчати так само довго як лінукс або баш
+бо це основи по верхах
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+yurii 19:05
+одна аплікація запитує іншу
+це грубо апі
+
+Максим 19:07
++
+
+maksym 19:13
+@Максим
+
+Максим 19:13
+Так ?
+
+Volodymyr Vystavkin 19:14
+https://campus.epam.com/en/training/4959
+
+maksym 19:57
+source .venv/bin/activate
+
+Максим 20:02
++
+
+Yurii Vilchynskyi 20:05
+{
+"name" = "task1-1"
+"public_ip" = "13.223.75.226"
+},
+{
+"name" = "task1-2"
+"public_ip" = "54.84.151.47"
+},
+{
+"name" = "task1-3"
+"public_ip" = "34.207.142.69"
+},
+{
+"name" = "task1-4"
+"public_ip" = "100.24.63.8"
+},
+{
+"name" = "task1-5"
+"public_ip" = "98.86.111.105"
+},
+{
+"name" = "task1-6"
+"public_ip" = "34.227.95.150"
+},
+
+Ольга Кирилюк 20:05
+2 Olia
+
+Volodymyr Vystavkin 20:05
+2 me
+ok 3
+
+Aleksey Voronov 20:05
+6
+
+maksym 20:05
+4 Максим
+
+Yurii Vilchynskyi 20:05
+MySt@rongPas@sw1ord123!
+https://gitlab.com/dan-it/groups/devops_14/-/blob/main/m5/l5/task/task.md?ref_type=heads
+
+Dmytro Vasiliev 20:06
+щоразу питає ще й лист пішки йде?)
+
+Yurii Vilchynskyi 20:07
+# 🧪 Lab: Deploy Python App on EC2 with systemd + Nginx Reverse Proxy
+
+## 🎯 Goal
+
+You are provided with an **EC2 instance (Ubuntu)** and SSH access.
+
+Your task is to:
+
+1. Deploy a Python web application
+2. Run it as a **systemd service**
+3. Configure **Nginx as a reverse proxy**
+4. Make the application accessible via port **80**
+
+---
+# 🧱 Architecture
+Browser → Nginx (port 80) → Python App (port 8000 via systemd)
+
+
+---
+
+## 🧱 Your Tasks
+
+### 1. Setup Environment
+
+On EC2 instance:
+
+- Install required packages:
+- Python3
+- pip
+- venv
+- nginx
+
+---
+
+### 2. Deploy Application
+
+- Copy application to: /opt/myapp
+- Create Python virtual environment
+- Install dependencies from: requirements.txt
+
+### 3. systemd Service
+
+Create a systemd service: /etc/systemd/system/myapp.service
+
+Requirements:
+
+- Runs application using virtualenv Python
+- Runs on boot automatically
+- Restarts automatically on failure
+### 4. Nginx Reverse Proxy
+
+Configure Nginx to:
+
+- Listen on port `80`
+- Forward traffic to application
+
+Yurii Vilchynskyi 20:16
+# 🧪 Lab: Deploy Python App on EC2 with systemd + Nginx Reverse Proxy
+
+## 🎯 Goal
+
+You are provided with an **EC2 instance (Ubuntu)** and SSH access.
+
+Your task is to:
+
+1. Deploy a Python web application
+2. Run it as a **systemd service**
+3. Configure **Nginx as a reverse proxy**
+4. Make the application accessible via port **80**
+
+---
+# 🧱 Architecture
+Browser → Nginx (port 80) → Python App (port 8000 via systemd)
+
+
+---
+
+## 🧱 Your Tasks
+
+### 1. Setup Environment
+
+On EC2 instance:
+
+- Install required packages:
+- Python3
+- pip
+- venv
+- nginx
+
+---
+
+### 2. Deploy Application
+
+- Copy application to: /opt/myapp
+- Create Python virtual environment
+- Install dependencies from: requirements.txt
+
+### 3. systemd Service
+
+Create a systemd service: /etc/systemd/system/myapp.service
+
+Requirements:
+
+- Runs application using virtualenv Python
+- Runs on boot automatically
+- Restarts automatically on failure
+# 🧪 Lab: Deploy Python App on EC2 with systemd + Nginx Reverse Proxy
+
+## 🎯 Goal
+
+You are provided with an **EC2 instance (Ubuntu)** and SSH access.
+
+Your task is to:
+
+1. Deploy a Python web application
+2. Run it as a **systemd service**
+3. Configure **Nginx as a reverse proxy**
+4. Make the application accessible via port **80**
+
+---
+# 🧱 Architecture
+Browser → Nginx (port 80) → Python App (port 8000 via systemd)
+
+
+---
+
+## 🧱 Your Tasks
+
+### 1. Setup Environment
+
+On EC2 instance:
+
+- Install required packages:
+- Python3
+- pip
+- venv
+- nginx
+
+---
+
+### 2. Deploy Application
+
+- Copy application to: /opt/myapp
+- Create Python virtual environment
+- Install dependencies from: requirements.txt
+
+### 3. systemd Service
+
+Create a systemd service: /etc/systemd/system/myapp.service
+
+Requirements:
+
+- Runs application using virtualenv Python
+- Runs on boot automatically
+- Restarts automatically on failure
+
+Максим 20:19
+apt update ; apt install  python3-pip  python3-venv nginx
+
+Максим 21:05
+server { listen 80; server_name your_domain.com; # або IP-адреса location / { proxy_pass http://127.0.0.1:8000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } # <--- Перевірте цю дужку } # <--- І цю дужку (кінець блоку server)
+
+Volodymyr Vystavkin 21:53
+class A:
+def __init__(self):
+print("A")
+
+class B(A):
+def __init__(self):
+super().__init__()
+print("B")
+
+class C(B):
+def __init__(self):
+super().__init__()
+print("C")
+
+C()
+
+yurii 21:55
+дякую
+
+maksym 22:01
+import sh
+print(sh.ls("-la"))
+
+Тут взагалі команди як методи )))
+pip install sh

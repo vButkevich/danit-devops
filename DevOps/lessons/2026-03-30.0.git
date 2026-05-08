@@ -1,0 +1,3 @@
+git rm --cached *.log
+git commit -m "Remove log files from repo"
+git push origin develop
