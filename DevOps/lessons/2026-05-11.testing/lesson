@@ -1,0 +1,85 @@
+sonarcube
+
+connect
+ ssh -i C:\Slavko\DAN-IT\DevOps\.ssh\id_ed25519.slavko  slavko@54.87.56.24
+ ssh -i C:\Slavko\DAN-IT\DevOps\.ssh\id_ed25519.slavko  slavko@13.222.183.190
+
+apt pugre postgres*
+install postgres
+
+postgres login by net - -h
+
+psql
+
+sudo -s
+sudo su postgres
+sudo su - postgres
+
+psql
+
+create user
+create database
+
+create databasee sonarcube;
+create user soar with encripted password '123456789';
+grant all privileges on database sonarcube to sonar;
+grant all on schema public to sonar;
+
+ctrl^d
+
+
+psql -h localhost -U sonar  -d sonarcube
+
+psql postgres
+grant all privileges on database sonarcube to sonar;
+or
+alter schema public owner to sonar;
+alter databse sonarcube owner to sonar;
+
+
+ctrl^d
+
+root
+
+configure linux
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-26.5.0.122743.zip?_gl=1*1cypry1*_gcl_au*MzcyMjYxMzE1LjE3Nzg1MjQyMDM.*_ga*NzEyNTE5ODUyLjE3Nzg1MjQyMDI.*_ga_9JZ0GZ5TC6*czE3Nzg1MjQyMDIkbzEkZzEkdDE3Nzg1MjQ0NzckajUzJGwwJGgw
+
+
+unzip
+systemd
+
+
+unzip
+
+mkdir /opt/sonarqube
+
+mv * /opt/sonarqube
+
+
+unitfile
+
+systemctl start sonarqube
+systemctl status sonarqube
+
+which java
+/usr/bin/java
+
+systemctl restart sonarqubr
+systemctl daemon-reload
+systemctl restart sonarqubr
+
+journalctl -xu sonarqube
+User=root
+Group= - delete
+systemctl daemon-reload
+systemctl restart sonarqubr
+
+
+java --version
+opt purge openjdk-17-jdk
+opt purge openjdk*
+opt install openjdl-17-jdk
+
+
+

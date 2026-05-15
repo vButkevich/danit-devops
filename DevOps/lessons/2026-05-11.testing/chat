@@ -1,0 +1,128 @@
+Today
+
+dl 19:01
+Двіжувати? Я забув що це
+
+dl 19:02
+З тими фултаймами)
+
+dl 19:02
++
+
+Dmytro Vasiliev 19:02
+Вихідні? Що таке вихідні?)
+
+Maksym Skomorokhov 19:03
+))))
+
+Ольга Кирилюк 19:03
+)))
+
+dl 19:04
+Мені оцінка не сподобалась((
+Plan
+Git pull
+2. Docker build
+3. Docker run
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+dl 19:30 (Edited)
+AI review agents )) мать їх так
+
+dl 19:34
+Я колись давно так кастомний авто рестарт робив для pm2. Гіт хук слав http на сервак при пуші в мейн, той ловив і робив рестарт
+
+dl 19:37 (Edited)
+Бо Jira потім до таски підтягує якщо вона до репки підключена. Дуже зручно
+
+Yurii Vilchynskyi 19:38
+https://www.atlassian.com/git/tutorials/git-hooks
+
+dl 19:48
+Тільки в туторіалах )
+
+dl 19:56
+Для цього дійсно краще замокати якісь SaaS інтеграції  бо квоти пожре навіть не доїде до проду)
+
+Максим 20:04
+https://community.cloudflare.com/t/dns-failover-settings/289312
+
+dl 20:07
+Про моє детіще говориш))
+
+dl 20:12
+@Dmytro Vasiliev зробиш - скажеш))
+
+Dmytro Vasiliev 20:17
+-
+
+dl 20:20
+Максим NDA)
+
+Dmytro Vasiliev 20:27
+мабуть таки Playwright
+
+Yurii Vilchynskyi 20:29
+https://docs.sonarsource.com/sonarqube-server/10.8
+
+Aleksey Voronov 20:46
++
+
+Максим 20:46
++
+
+Volodymyr Vystavkin 20:46
++
+
+denys 20:46
++
+
+Максим 20:47
++
+
+Aleksey Voronov 20:47
++
+
+Volodymyr Vystavkin 20:51
+https://docs.sonarsource.com/sonarqube-server/10.8/try-out-sonarqube
+
+Yurii Vilchynskyi 21:06
+sudo apt install -y postgresql-common
+sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+
+Максим 21:20
+GRANT ALL PRIVILEGES ON DATABASE sonat TO sonat;
+CREATE USER sonat WITH PASSWORD '1234qwer';
+CREATE DATABASE sonat OWNER sonat;
+GRANT ALL PRIVILEGES ON DATABASE sonat TO sonat;
+
+yurii 21:24
+postgres=# ALTER DATABASE dg_name OWNER TO user_name;
+
+Aleksey Voronov 21:32
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-26.5.0.122743.zip
+
+dl 21:44
+Ви пакетний менеджер хочете стирити?
+Я думаю там буде вже артефакт зібраний не?
+
+Dmytro Vasiliev 21:48 (Edited)
+хтось вже пробував убунту 26? Як шифрування з TPM працює?
+
+Yurii Vilchynskyi 21:48
+-
+
+Максим 21:52
+which java
+
+Максим 22:08
+#sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube?currentSchema=my_schema
+
+dl 22:12
+Its magic)
+
+Максим 22:13
+sudo apt update
+sudo apt install openjdk-17-jdk -y

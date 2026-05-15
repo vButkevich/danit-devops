@@ -1,0 +1,136 @@
+Today
+
+Yurii Vilchynskyi 19:23
+SONAR_JDBC_URL
+SONAR_JDBC_USERNAME
+SONAR_JDBC_PASSWORD
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Максим 20:34
++
+
+Volodymyr Vystavkin 20:50
++
+
+Ольга Кирилюк 20:51
++
+
+Maksym Skomorokhov 20:51
++
+
+Yurii Vilchynskyi 20:53
+54.226.41.172
+18.205.20.84
+54.196.208.122
+
+ubuntu
+MyStrongPas@sw1
+
+Ольга Кирилюк 20:53
+1 Olia
+
+Maksym Skomorokhov 20:54
+На 1 - postgres
+18.205.20.84 - java
+
+Yurii Vilchynskyi 20:55
+https://linuxize.com/cheatsheet/ufw/
+
+Ольга Кирилюк 21:00
+-
+
+dl 21:02 (Edited)
+А для мака?(
+
+Maksym Skomorokhov 21:04
+Я могу nginx підняти на третій якщо ніхто не проти
+
+dl 21:05
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+woEskzn7dnWXhF+SAX+da8rEO3D4/8L4Vwg+GRe8X
+
+dl 21:06
+Я так і роблю на роботі
+
+Maksym Skomorokhov 21:06
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtLCXCcvgPVLA2J5IKxwiz3yyFPeeNXQS6jjAeLkJLK
+
+dl 21:09
+Давайте агентів запустимо туди )
+))
+
+Volodymyr Vystavkin 21:10
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGICWY1G2vN9V5OrIWBiJKZddlYM8zIYl53eabRPGuFt volodymyr.vystavkin@gmail.com
+
+Максим 21:11
+AAAAC3NzaC1lZDI1NTE5AAAAICdiZzNd8BMtQoiq7Fl1+V7tzH3UqWfQ9VMuDDV03udH
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdiZzNd8BMtQoiq7Fl1+V7tzH3UqWfQ9VMuDDV03udH
+sudo ufw default deny incoming
+
+Максим 21:17
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
+
+Yurii Vilchynskyi 21:18
+http://petclinic-app.freedynamicdns.net/
+
+Volodymyr Vystavkin 21:21
+DB: 172.31.17.166:5432
+
+Maksym Skomorokhov 21:23
+172.31.30.230
+
+Максим 21:25
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow from 172.31.18.241 to any port 8080 proto tcp
+sudo ufw allow from 172.31.17.166 to any port 5432 proto tcp
+sudo ufw enable
+sudo ufw status verbose
+
+Volodymyr Vystavkin 21:27
+APP: 172.31.18.241
+
+Yurii Vilchynskyi 21:28 (Edited)
+nginx -172.31.30.230
+
+Максим 21:33 (Edited)
+#NGINX
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
+#DB
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow from 172.31.18.241 to any port 5432 proto tcp # NA DB
+sudo ufw enable
+sudo ufw status verbose
+#APP
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow from 172.31.30.230 to any port 8080 proto tcp # NA APP
+sudo ufw enable
+sudo ufw status verbose
+
+Maksym Skomorokhov 21:34
+➜  .ssh ssh -i id_ed25519.pub -J ubuntu@54.196.208.122 ubuntu@172.31.18.241
+
+Все гуд
+
+Yurii Vilchynskyi 21:42
+http://18.205.20.84:8080/
+
+Yurii Vilchynskyi 21:47
+http://petclinic-app.freedynamicdns.net/vets.html
+
+Yurii Vilchynskyi 21:57
+54.196.208.122 nginx
+54.226.41.172 - DB
