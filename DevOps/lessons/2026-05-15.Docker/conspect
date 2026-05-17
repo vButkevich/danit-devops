@@ -1,0 +1,237 @@
+ChatGPT
+
+
+
+
+Pasted text(12).txt
+Document
+перетворити на короткий конспект, послідовність роботи з docker
+
+
+Зроблю короткий конспект саме як практичну послідовність: від ідеї контейнера до базових Docker-команд і запуску застосунку.
+
+Thought for 11s
+Короткий конспект: послідовність роботи з Docker
+1. Навіщо потрібен Docker
+Docker вирішує проблему:
+
+“На моєму комп’ютері працює, а на сервері — ні”.
+
+Причина проблеми: у розробника і на сервері можуть бути різні версії ОС, Java/.NET/Node, бібліотек, пакетів, змінних середовища тощо. Контейнеризація дозволяє зібрати застосунок разом із потрібним оточенням в один стандартизований артефакт — Docker image. 
+
+
+2. Основні поняття
+Docker Image
+Image — це готовий незмінний образ застосунку.
+
+Приклади:
+
+nginx
+postgres
+mysql
+hello-world
+Image зазвичай містить:
+
+мінімальний Linux + runtime + залежності + застосунок
+Image є immutable, тобто після створення його не змінюють, а створюють нову версію з новим tag.
+
+Docker Container
+Container — це запущений екземпляр image.
+
+Один image можна запускати багато разів:
+
+docker run hello-world
+docker run hello-world
+docker run hello-world
+Це створить кілька різних контейнерів на базі одного image.
+
+Registry
+Registry — це сховище Docker images.
+
+Найпопулярніший registry:
+
+Docker Hub
+Звідти Docker завантажує образи, якщо їх ще немає локально.
+
+3. Базова послідовність роботи з Docker
+Крок 1. Встановити Docker
+На Windows/Mac зазвичай ставиться:
+
+Docker Desktop
+На Linux — Docker Engine.
+
+Після встановлення перевірити:
+
+docker --version
+Крок 2. Перевірити, що Docker працює
+docker ps
+Якщо Docker запущений, команда покаже список активних контейнерів.
+
+Активні контейнери:
+
+docker ps
+Усі контейнери, включно із зупиненими:
+
+docker ps -a
+Крок 3. Запустити тестовий контейнер
+docker run hello-world
+Що відбувається:
+
+1. Docker шукає image hello-world локально.
+2. Якщо image немає — завантажує його з Docker Hub.
+3. Створює новий container.
+4. Запускає container.
+5. Container виконує свою команду і завершується.
+4. Робота з images
+Завантажити image вручну
+docker pull hello-world
+Або з конкретним tag:
+
+docker pull nginx:1.27
+Не бажано використовувати latest у production:
+
+docker pull nginx:latest
+Краще завжди вказувати конкретну версію:
+
+docker pull nginx:1.27.3
+Подивитися локальні images
+docker images
+або:
+
+docker image ls
+5. Запуск контейнера
+Простий запуск
+docker run nginx
+Запуск у фоновому режимі
+docker run -d nginx
+-d означає detached mode — контейнер працює у фоні.
+
+Запуск з іменем
+docker run -d --name my-nginx nginx
+Прокинути порт
+docker run -d --name my-nginx -p 8080:80 nginx
+Логіка:
+
+host:container
+8080:80
+Тобто:
+
+http://localhost:8080 → порт 80 всередині контейнера
+6. Управління контейнерами
+Подивитися активні контейнери
+docker ps
+Подивитися всі контейнери
+docker ps -a
+Зупинити контейнер
+docker stop my-nginx
+або за container id:
+
+docker stop <container_id>
+Запустити зупинений контейнер
+docker start my-nginx
+Видалити контейнер
+docker rm my-nginx
+Якщо контейнер ще працює:
+
+docker rm -f my-nginx
+7. Логи та діагностика
+Подивитися логи
+docker logs my-nginx
+Дивитися логи в live-режимі
+docker logs -f my-nginx
+Подивитися детальну інформацію
+docker inspect my-nginx
+8. Зайти всередину контейнера
+Якщо контейнер живий:
+
+docker exec -it my-nginx sh
+або, якщо є bash:
+
+docker exec -it my-nginx bash
+Важливо: у маленьких images може не бути bash, sudo, ssh та інших звичних утиліт.
+
+9. Побудова власного image
+У проєкті створюється файл:
+
+Dockerfile
+Приклад для простого застосунку:
+
+FROM nginx:1.27
+COPY ./html /usr/share/nginx/html
+Побудувати image:
+
+docker build -t my-app:1.0 .
+Запустити:
+
+docker run -d --name my-app -p 8080:80 my-app:1.0
+10. Типова workflow-схема
+1. Розробник пише код.
+2. Створюється Dockerfile.
+3. Виконується docker build.
+4. Отримуємо Docker image.
+5. Image пушиться в registry.
+6. На сервері виконується docker pull.
+7. Запускається container через docker run або docker compose.
+8. Перевіряються logs, ports, health.
+9. Для нової версії створюється новий image з новим tag.
+10. Старий контейнер зупиняється, новий запускається.
+11. Docker Compose
+Docker Compose потрібен, коли застосунок має кілька сервісів:
+
+backend
+frontend
+database
+redis
+nginx
+Файл:
+
+docker-compose.yml
+Приклад:
+
+services:
+  web:
+    image: nginx:1.27
+    ports:
+      - "8080:80"
+Запуск:
+
+docker compose up -d
+Зупинка:
+
+docker compose down
+Перегляд контейнерів:
+
+docker compose ps
+Логи:
+
+docker compose logs -f
+12. Найважливіші команди
+docker --version
+docker ps
+docker ps -a
+docker images
+docker pull nginx:1.27
+docker run hello-world
+docker run -d --name my-nginx -p 8080:80 nginx
+docker logs my-nginx
+docker exec -it my-nginx sh
+docker stop my-nginx
+docker rm my-nginx
+docker build -t my-app:1.0 .
+docker compose up -d
+docker compose down
+Коротко одним блоком
+Docker image — це шаблон/образ.
+Docker container — це запущений image.
+Registry — місце, де зберігаються images.
+Dockerfile — інструкція, як зібрати image.
+docker build — створити image.
+docker pull — завантажити image.
+docker run — створити і запустити container.
+docker ps — подивитися контейнери.
+docker logs — подивитися логи.
+docker exec -it — зайти всередину контейнера.
+docker compose — запуск кількох сервісів разом.
+Головна ідея Docker: один раз зібрали image — однаково запускаємо його локально, на тесті та на production.
+
+

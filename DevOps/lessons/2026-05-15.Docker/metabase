@@ -1,0 +1,8 @@
+ docker run --restart always -d -p 3000:3000 --name metabase-3000 metabase/metabase-enterprise
+
+
+ 2vE4dY43Dv#MGOHL
+
+
+ docker run --restart always -d -p 12345:3000 --name metabase-3000 metabase/metabase
+
