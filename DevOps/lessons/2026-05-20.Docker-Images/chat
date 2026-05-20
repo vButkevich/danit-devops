@@ -1,0 +1,61 @@
+Today
+
+dl 18:59
+Юрію, добрий день, є офтоп питання
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Yurii Vilchynskyi 19:27
+https://docs.docker.com/reference/dockerfile/
+
+dl 19:31
+ENTRYPOINT до першого CMD?
+В IDE є плагіни для докера
+
+dl 19:36
+Шлях до файлу🙂
+
+dl 19:42
+Або COPY . .
+Дуже зрозуміла команда на перший погляд))
+
+dl 19:47
+Так воно ж як правило білдається на білд машині, а нод модулі на попадуть туди бо вони ж і так в ігнорі на гіті
+Локально запускають напряму тоді частіше)
+
+dl 20:00 (Edited)
+А ще цілий скрипт наваять можна)
+
+dl 20:03
+exec "$@"
+Бо хелс чек не пройде
+
+Dmytro Vasiliev 20:49
+і пару рочків з тим попрацювати)
+
+dl 20:51
+Розкажете про стейджінг?
+
+dl 21:00
+Ніколи не бачив)
+Та не виконується г
+
+Dmytro Vasiliev 21:08
+ну да. імедж убунту 200+ мб стягнув
+
+dl 21:13
+Не буде)
+
+Ольга Кирилюк 21:20
++
+
+Aleksey Voronov 21:20
++
+
+Максим 21:20
++
+
+Volodymyr Vystavkin 21:20
++
+
+Yurii Vilchynskyi 22:01
+https://docs.docker.com/reference/dockerfile/#healthcheck

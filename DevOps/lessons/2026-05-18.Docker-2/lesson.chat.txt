@@ -1,0 +1,109 @@
+Today
+
+dl 19:08
+А Ви пам*ятаєте що це на туб викладається?)
+
+dl 19:08
+В загальний доступ
+
+dl 19:41
+Я не зможу)
+Тільки форвард а потім host.docker.internal
+
+dl 19:48
+Тільки проксонути порт
+
+dl 19:51
+Опааа)
+
+dl 19:51
+Моветончик)
+
+dl 19:53
+ОО а це я не знав, я все рестартив шо можно
+
+dl 20:19 (Edited)
+сходіть плз на хост)
+
+dl 21:08
+Дуже часто в докерфайлі бачу якраз таке 
+FROM nginx:1.21-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+
+dl 21:15
+Один файл можна через докер компоуз 100%
+
+dl 21:28
+@Dmytro Vasiliev  Docker build based on original postgres.
+Це питання до розробників, дивно так то чому так
+
+Aleksey Voronov 21:33
++
+
+Максим 21:33
++
+
+Volodymyr Vystavkin 21:33
++
+
+Ольга Кирилюк 21:33
++
+
+dl 21:34
+/usr/local/bin/docker
+
+Yurii Vilchynskyi 21:40
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cat Page</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Cat Page</h1>
+        <h2>Cat Photos</h2>
+    </header>
+
+    <main>
+        <p>Here is a cute orange cat resting. Click the image to view more photos in a gallery.</p>
+        
+        <!-- The anchor tags around the image make it clickable -->
+        <a href="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg">
+            <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+        </a>
+    </main>
+</body>
+</html>
+
+dl 21:40
+Котікі це добре
+
+dl 21:54
+Так суто технічно можна вже в контейнері помінять)
+
+Максим 21:54
+server {
+    listen 80;                         # Порт, который слушает Nginx снаружи
+    server_name example.com;           # Ваше доменное имя или IP-адрес
+    location / {
+        proxy_pass http://172.17.0.2:80; # Внутренний адрес и порт приложения
+        
+        # Передача реальных заголовков клиента (не обязательно, но важно для логирования)
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+docker run -d -p 80:80 --name my_app3 -v /etc/nginx/:/etc/nginx/ nginx
+
+dl 21:58
+Максим заоверхейдив)
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+dl 22:04
+Будуть страшні коли підуть ноди, поди)
+А шо скажете про меседж брокери? Загортати їх в контейнер для комунікації між контейнерами чи на окремій ВМ?
+Так ресурси контейнеру треба додати

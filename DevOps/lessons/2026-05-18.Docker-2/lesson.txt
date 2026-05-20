@@ -1,0 +1,21 @@
+docker network ls
+
+slavko@metabase:~$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+600cc0877e12   bridge    bridge    local
+15e04772b09c   host      host      local
+f3dea7f81fc0   none      null      local
+slavko@metabase:~$ 
+
+
+docker network crate <NAME>
+
+
+
+
+storage = volume
+
+
+docker volume create
+
+h

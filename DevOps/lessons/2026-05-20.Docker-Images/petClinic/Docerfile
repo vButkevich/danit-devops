@@ -1,0 +1,6 @@
+FROM maven
+
+WORKDIR /app
+COPY . .
+
+RUN 

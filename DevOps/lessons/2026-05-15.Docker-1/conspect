@@ -220,6 +220,8 @@ docker rm my-nginx
 docker build -t my-app:1.0 .
 docker compose up -d
 docker compose down
+
+
 Коротко одним блоком
 Docker image — це шаблон/образ.
 Docker container — це запущений image.

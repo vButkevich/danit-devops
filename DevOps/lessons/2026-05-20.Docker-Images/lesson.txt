@@ -1,0 +1,45 @@
+image in repository
+
+dockerHub
+image -> <image_Name>:<image_Tag>
+
+image_Tag (version,)
+
+<repo_Name>/<image_Name>:<image_Tag>
+
+
+docker inspect
+
+
+CRETE IMAGE custom
+
+Dockerfile
+FROM ubuntu:latest
+
+docker reference
+https://docs.docker.com/reference/dockerfile/
+
+
+docker build -t ping:v1. 
+
+differnces: entrypoint vs cmd
+
+
+COPY
+ADD
+
+
+ENV
+
+ARG
+
+EXPOSE 80 #- open ports
+
+
+WORKDIR - home for app - /app
+
+WORKDIR /app
+COPY . .
+
+
+USER - user that run container
