@@ -1,0 +1,183 @@
+Today
+
+Максим 19:12
+docker run --network my --name my-postgres111 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=app_db -p 5433:5432 -d postgres
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+dl 19:23
+Migrations and seeds
+
+Максим 19:23
+psql -U имя_пользователя -d имя_базы < путь_к_файлу.sql
+
+Dmytro Vasiliev 19:38 (Edited)
+а начого там --- ? у хорошій практиці?
+
+Dmytro Vasiliev 19:41
+в яких практичних випадках воно може бути використане @Yurii Vilchynskyi ?
+
+Yurii Vilchynskyi 19:46
+https://docs.docker.com/reference/compose-file/
+
+Dmytro Vasiliev 19:48
+нджинкс запустити в контейнері
+
+Yurii Vilchynskyi 19:56
+docker compose down --remove-orphans --volumes
+
+dl 19:57
+Можна і не послідовно
+
+yurii 20:06
+Anonymous VolumesВременный анонимный том без привязки к конкретному имени.
+
+Dmytro Vasiliev 20:12
+так і аап не запуститься якщо постгреса нема?
+ну тоді все логічно і правильно
+або контейнер ап
+
+dl 20:14
+Про хелс чек
+
+Maksym Skomorokhov 20:16
+pg_isready?
+
+Dmytro Vasiliev 20:21
+а як воно ведеться якщо контейнер "рестартед" ?
+
+Dmytro Vasiliev 20:27
+чи ок практика рестартувати контейнер нескінченну кількість разів, якщо він обламується?
+тобто що правити конфіг докера чи шаблон забікса?)
+тобто простіше редагувати кореневий шаблон)
+то ж рестарт олвейс - класика)
+
+Yurii Vilchynskyi 20:32
+services:
+postgres:
+image: postgres:latest
+environment:
+- POSTGRES_PASSWORD=test123
+healthcheck:
+test: [ "CMD-SHELL", "pg_isready" ]
+interval: 10s
+timeout: 5s
+retries: 5
+start_period: 10s
+
+app:
+image: nginx
+depends_on:
+postgres:
+condition: service_healthy
+
+Максим 20:52
++
+
+Maksym Skomorokhov 20:52
++
+))
+
+Betty 20:52
++
+
+Aleksey Voronov 20:52
+Мне не удобно сегодня
+
+denys 20:53
++
+
+Aleksey Voronov 20:53
++
+
+Yurii Vilchynskyi 20:54
+{
+"name" = "task1-1"
+"public_ip" = "3.93.34.248"
+},
+{
+"name" = "task1-2"
+"public_ip" = "35.170.80.113"
+},
+{
+"name" = "task1-3"
+"public_ip" = "44.204.215.133"
+},
+{
+"name" = "task1-4"
+"public_ip" = "100.53.231.37"
+},
+{
+"name" = "task1-5"
+"public_ip" = "32.192.247.36"
+},
+{
+"name" = "task1-6"
+"public_ip" = "100.53.254.197"
+},
+user: ubuntu
+password: MySt@rongPas@sw1ord123!
+
+Максим 21:04
+FROM maven:3.9.16-amazoncorretto-17-debian as builder
+RUN apt update  
+WORKDIR /app
+COPY . .
+RUN mvn package
+FROM maven:3.9.16-amazoncorretto-17-debian
+COPY  --from=builder /app/target/spring-petclinic-4.0.0-SNAPSHOT.jar .
+WORKDIR /app
+EXPOSE 8080
+CMD ["java", "-jar", "app/spring-petclinic-4.0.0-SNAPSHOT.jar"]
+
+Yurii Vilchynskyi 21:14
+https://docs.docker.com/reference/compose-file/build/
+
+Максим 21:34
+-e "POSTGRES_URL=jdbc:postgresql://my-postgres111:5432/app_db" -e "POSTGRES_USER=postgres" -e "POSTGRES_PASS=mysecretpassword" -e SPRING_PROFILES_ACTIVE=postgres app:7
+
+Maksym Skomorokhov 21:51 (Edited)
+http://35.170.80.113:80/  так все бігає ))
+
+Максим 22:02
+services:
+   postgres:
+    image: postgres:18.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=petclinic
+      - POSTGRES_USER=petclinic
+      - POSTGRES_DB=petclinic
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - petclinic
+   petclinic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment: POSTGRES_URL=jdbc:postgresql://postgres:5432/petclinic
+    environment: POSTGRES_USER=petclinic
+    environment: POSTGRES_PASS=petclinic
+   
+   
+    networks:
+      - petclinic
+volumes:
+  postgres_data:
+networks:
+  petclinic:
+
+yurii 22:07
+то уже наверное кирпич(
+
+Максим 22:11
+https://www.aks.ua/item/view/411875/shleif-apple-iphone-xs-max-s-wi-fi-antennoi-original.html?utm_source=google&utm_medium=cpc&utm_campaign=MAX_shleify-telefonov&gad_source=1&gad_campaignid=19588263295&gbraid=0AAAAADHWip9wCAqaNt53gtmbeHY_4pWYQ&gclid=CjwKCAjw5s_QBhAdEiwADD_gBmlqNMayfdkpYxgv4BuHSzp-L3sqBdXXf30Bg74m98iqrC-qineIihoCaUgQAvD_BwE
+
+Максим 22:21
+https://www.pearsonvue.com/us/en/test-takers.html
+
+yurii 22:21
+дякую

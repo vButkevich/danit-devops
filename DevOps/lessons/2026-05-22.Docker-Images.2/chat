@@ -1,0 +1,91 @@
+Today
+
+Volodymyr Vystavkin 19:54
+FROM maven:4.0.0-rc-5-amazoncorretto-25-debian-trixie
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package -DskipTests 
+
+EXPOSE 8080
+
+CMD ["java","-jar","/app/target/spring-petclinic-4.0.0-SNAPSHOT.jar" ]
+
+dl 19:58
+Він може бути асинхронним?
+
+dl 20:15
+Для фронта зручно, там ж спочатку якийсь вебпак треба зібрати а потім просто підкинути це в nginx
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+dl 20:29
+Воно передвстановлюється напевно в докер
+
+dl 20:21
+Максим бачили Динозаврів?
+
+Максим 20:34
+https://ru.wikipedia.org/wiki/%D0%9B%D0%B5%D0%BA%D1%81%D0%B8%D0%BA%D0%BE%D0%BD_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0)
+
+Максим 20:42 (Edited)
+Разработчики Е. Н. Веселов (1985—1991)
+
+Yurii Vilchynskyi 20:45
+https://docs.docker.com/build/building/best-practices/
+
+Aleksey Voronov 20:55
++
+
+Максим 20:55
++
+
+Maksym Skomorokhov 20:55
++
+
+denys 20:55
++
+
+Vlad 20:55
++
+
+You 20:55
++
+
+dl 21:02
+https://hub.docker.com/r/forze96/dl-superimage
+
+Maksym Skomorokhov 21:03
++
+
+Vlad 21:03
+docker images
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+
+Aleksey Voronov 21:03
++
+docker system prune -a --volumes — волшебная команда, которая удаляет все неиспользуемые контейнеры, сети, образы и тома, освобождая гигабайты диска.
+
+Vlad 21:11
++
+
+Aleksey Voronov 21:28
+aleks1802/petclinic
+
+dl 21:30
+А в мене стало)
+
+dl 21:35
+То я підтримав колегу по платформі, не треба на тих x86 рівнятися ))
+
+Максим 21:39
++
+
+Aleksey Voronov 21:39
++
+
+dl 21:42
+Ой, там з мережою буде ж не дуже
+Давайте краще одразу все в компоузі
+

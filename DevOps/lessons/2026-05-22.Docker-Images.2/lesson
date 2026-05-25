@@ -1,0 +1,28 @@
+
+docker login
+
+-- rename
+
+docker tag counters:local vyacheslav22/lichilnyky:v1.0
+
+
+docker push vyacheslav22/lichilnyky 
+
+docker push vyacheslav22/lichilnyky:
+
+------------------------------------------------------------------
+
+docker compose
+
+docker compose build
+
+
+
+docker network create lichilnyky-network
+
+docker compose -f docker-compose.yml up -d
+docker run --network lichilnyky-network compose -f docker-compose.yml up -d
+
+docker compose up -d
+
+
