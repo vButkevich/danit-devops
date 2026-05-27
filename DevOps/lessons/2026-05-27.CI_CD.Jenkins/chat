@@ -1,0 +1,80 @@
+Today
+
+Volodymyr Vystavkin 19:36
+repo
+
+dl 20:14
+Так і є, в azure pipelines у нас є гарна кнопка створити реліз - і воно все на стейдж залітає)
+
+denys 20:23
++
+
+ILLIA ZUBOV 20:23
++
+
+Maksym Skomorokhov 20:23
++
+
+Volodymyr Vystavkin 20:23
++
+
+Максим 20:25
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key | tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+rm -f /etc/apt/sources.list.d/jenkins.list
+
+Maksym Skomorokhov 20:47
++
+
+Volodymyr Vystavkin 20:47
++
+
+Максим 20:47
++
+
+denys 20:47
++
+
+ILLIA ZUBOV 20:48
++
+
+dl 21:35
+Тю, реально не очевидно
+LLM нехай працюэ)
+
+dl 21:45
+А в azure yaml syntax до речі, здавалось би мали б бути єдині стандарти для таких інстурментів(
+
+dl 21:51 (Edited)
+Може вони переїхали на мейн а тут в доці забули вказати) (по дефолту)
+
+Dmytro Vasiliev 21:52
+а master? не main?
+
+Yurii Vilchynskyi 21:54
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic.git'
+                sh "ls -la"
+            }
+        }
+    }
+}
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+dl 21:55 (Edited)
+А потім піти з контори і обмежити доступ до репки зі скріптами))
+
+Dmytro Vasiliev 22:05 (Edited)
+блін цей козельчик не просто злетів. по нам фігачить (
+
+dl 22:06
+Ага прольот
+
+Максим 22:12
+https://www.youtube.com/watch?v=iWg6viDkHvI
+
