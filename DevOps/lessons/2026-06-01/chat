@@ -1,0 +1,268 @@
+Today
+
+Максим 19:10
+= + =
+
+Dmytro 19:17
+Добрий вечір
+
+Aleksey Voronov 19:20
++
+
+Maksym Skomorokhov 19:20
++
+
+ILLIA ZUBOV 19:20
++
+
+Ольга Кирилюк 19:20
++
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+denys 19:20
++
+
+Максим 19:20
++
+
+You 19:20
++
+
+Vlad 19:20
++
+
+Yurii Vilchynskyi 19:28
+yurii@yurii-main:~/danit/spring-petclinic$ git remote -v
+origin	https://github.com/spring-projects/spring-petclinic.git (fetch)
+origin	https://github.com/spring-projects/spring-petclinic.git (push)
+yurii@yurii-main:~/danit/spring-petclinic$ git remote remove origin
+yurii@yurii-main:~/danit/spring-petclinic$ git remote -v
+yurii@yurii-main:~/danit/spring-petclinic$ git remote add origin https://github.com/Mrbeeware/petclinic.git
+yurii@yurii-main:~/danit/spring-petclinic$ git push -u origin main
+_______________________________________________________---
+
+Maksym Skomorokhov 19:33
++
+
+ILLIA ZUBOV 19:33
++
+
+Vlad 19:34
++
+
+denys 19:37
++
+
+Максим 19:38
++
+
+Yurii Vilchynskyi 19:45
+cleanWs()
+
+Yurii Vilchynskyi 19:52
+Workspace Cleanup Plugin
+
+Vlad 19:53
++
+
+ILLIA ZUBOV 19:53
++
+
+Maksym Skomorokhov 19:53
++
+
+Максим 19:53
++
+FROM maven:3.9.16-amazoncorretto-17-debian as builder
+RUN apt update  
+WORKDIR /app
+COPY . .
+RUN mvn package
+FROM maven:3.9.16-amazoncorretto-17-debian
+COPY  --from=builder /app/target/spring-petclinic-4.0.0-SNAPSHOT.jar .
+WORKDIR /app
+EXPOSE 8080
+CMD ["java", "-jar", "app/spring-petclinic-4.0.0-SNAPSHOT.jar"]
+
+Yurii Vilchynskyi 19:57
+FROM maven:3.9.16-amazoncorretto-17-debian as builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn package
+
+FROM openjdk:17.0.2-slim-buster
+
+WORKDIR /app
+
+COPY --from=builder /app/target/spring-petclinic-4.0.0-SNAPSHOT.jar .
+EXPOSE 8080
+CMD ["java", "-jar", "/app/spring-petclinic-4.0.0-SNAPSHOT.jar"]
+
+denys 20:01
+FROM maven:3.9.16-amazoncorretto-17-debian as builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn package
+
+FROM openjdk:17.0.2-slim-buster
+
+WORKDIR /app
+
+COPY --from=builder /app/target/spring-petclinic-4.0.0-SNAPSHOT.jar .
+EXPOSE 8080
+CMD ["java", "-jar", "/app/spring-petclinic-4.0.0-SNAPSHOT.jar"]
+
+ILLIA ZUBOV 20:01
++
+
+Maksym Skomorokhov 20:01
++
+
+denys 20:01
++
+
+ILLIA ZUBOV 20:05
+git add .
+
+ILLIA ZUBOV 20:14
+sh docker build ...
+
+Максим 20:16
+docker system prune -a --volumes
+
+Maksym Skomorokhov 20:20
++
+
+Yurii Vilchynskyi 20:22
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone') {
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/Mrbeeware/petclinic.git'
+                sh "ls -la"
+            }
+        }
+        stage('docker build') {
+            steps {
+                sh "docker build -t petclinic:latest ."
+            }
+        }
+    }
+}
+
+denys 20:27
++
+
+Maksym Skomorokhov 20:27
++
+
+Ольга Кирилюк 20:27
++
+
+ILLIA ZUBOV 20:27
+билдится
+
+Максим 20:28
+ok
+
+dl 20:52
+На всяк випадок - ви наче на місяць його створили
+
+denys 20:56
++
+
+Yurii Vilchynskyi 21:00
+Credentials Binding Plugin Version
+
+dl 21:10
+Якись commonJS с колбеками))
+
+Yurii Vilchynskyi 21:13
+stage('docker push'){
+steps{
+withCredentials([usernamePassword(credentialsId: 'docker_hub_secret', passwordVariable: 'pass', usernameVariable: 'user')]) {
+sh "docker login -u ${user} -p ${pass}"
+}
+}
+}
+
+denys 21:20
++
+
+Maksym Skomorokhov 21:20
++
+
+Vlad 21:20
++
+
+ILLIA ZUBOV 21:20
++
+
+Максим 21:20
++
+
+Yurii Vilchynskyi 21:26
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone') {
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/Mrbeeware/petclinic.git'
+                sh "ls -la"
+            }
+        }
+        stage('docker build') {
+            steps {
+                sh "docker build -t 17062000/petclinic-new:latest -t petclinic:latest ."
+            }
+        }
+        stage('docker push'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker_hub_secret', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    sh "docker login -u ${USER} -p ${PASS}"
+                    sh "docker push 17062000/petclinic-new:latest"
+                }
+            }
+        }
+    }
+}
+
+denys 21:27
++
+
+Vlad 21:27
++
+
+Максим 21:27
++
+
+Maksym Skomorokhov 21:28
+success
+
+ILLIA ZUBOV 21:28
+билдится
+долго
+
+denys 21:45
++
+
+Maksym Skomorokhov 21:45
++
+
+Vlad 21:45
++
+
+dl 21:58
+Ви це розказували, там ж навіть можна глянути який порт займає сервер докера
+На силіконах це AVF якщо що
