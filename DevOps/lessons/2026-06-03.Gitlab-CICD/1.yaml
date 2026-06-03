@@ -1,0 +1,24 @@
+default:
+    tags: ["yurii "]
+
+stages:
+    - build
+
+build_petclinic:
+    stage: build
+    variables:
+      # Clear this variable to completely stop Docker from starting via TLS
+      DOCKER_TLS_CERTDIR: ""
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_TLS_VERIFY: ""
+    image:
+        name: docker:29.5.2
+        entrypoint: [""]
+    services:
+        - name: docker:29.5.2-dind
+          alias: docker
+    script: |
+        # Wait a few brief moments for the sidecar dind daemon to fully spin up
+        sleep 5 
+        docker build -t petclinic:latest .
+        ls -la

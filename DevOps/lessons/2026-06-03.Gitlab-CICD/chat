@@ -1,0 +1,62 @@
+Today
+
+Yurii Vilchynskyi 19:04
+Якщо щ опишіть
+Чат читаю
+
+Volodymyr Vystavkin 19:06
+Может ктото скинуть сылку на свой репозиторий я последнее занятия не делал докер файлю
+
+ILLIA ZUBOV 19:07
+Сегодня нужна будет ВМ, Дженкинс или т.п. ?
+
+Yurii Vilchynskyi 19:10
+Так, треба ВМку
+
+Yurii Vilchynskyi 19:16
+Сорі, затримуюсь. Ось таке будем робити. https://gitlab.com/yvilchynskyi1/spring-petclinic/-/blob/main/task/task.md?ref_type=heads
+https://docs.gitlab.com/runner/executors/docker/
+
+Dmytro Vasiliev 19:33
+Добрий вечір. перепрошую за запізнення.
+
+Maksym Skomorokhov 19:33
+rm -rf .git и по новой подключить?
+
+dl 20:06
+10 jobs
+А там стейджами?
+
+dl 20:27
+Так у дженкінса ще мільярд плагінів всяких інтеграцій з забіксом, і т д
+
+dl 20:28
+Це ти про кого? 🫣 @Dmytro Vasiliev
+
+Dmytro Vasiliev 20:29
+це я про різні робочі обставини які можуть виникати теоретично і практично :)
+
+Dmytro Vasiliev 20:30
+наприклад дозволити запуск якогось лютого плейбука не профільному співробітнику, який я наваяв і сам боюсь запускати )))
+
+Yurii Vilchynskyi 21:02
+sudo gitlab-runner register \
+  --non-interactive \
+  --url "https://gitlab.com/" \
+  --token "YOUR_TOKEN" \
+  --docker-image alpine:latest \
+  --description "docker-runner"
+
+dl 21:22
+Нагадує фільм Inception
+
+Ольга Кирилюк 21:32
+code
+
+Yurii Vilchynskyi 21:32
+```
+dasd
+
+Yurii Vilchynskyi 22:16
+https://gitlab.com/yvilchynskyi1/spring-petclinic/-/blob/main/.gitlab-ci.yml?ref_type=heads
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
