@@ -1,0 +1,30 @@
+Today
+
+Yurii Vilchynskyi 19:09
+https://gitlab.com/dan-it/groups/devops_soft/-/tree/main/forStep2?ref_type=heads
+
+Vlad 19:10
++
+
+Maksym Skomorokhov 20:45
++
+
+Максим 20:53
++
+
+Dmytro Vasiliev 21:01
+контора пожлобилась адміна\девопса найняти )))
+
+Yurii Vilchynskyi 21:10
+https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
+
+Maksym Skomorokhov 21:17
+COPY ./index.html /usr/share/nginx/html/index.html
+
+Dmytro Vasiliev 21:49
+у мене мабуть будуть питання і я з ними приломлюсь поглянути чи таке можна було?)
+вже наготував проксмокс з гітлабом у внутрішньому контурі. туди ж реджистрі думаю засунути.
+цікаво чи вийде то з ансібла зарядити.
+@Yurii Vilchynskyi так можна?
+(ну а раптом не поїде то вагрант)
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat

@@ -1,0 +1,63 @@
+Today
+
+Maksym Skomorokhov 20:08
+FROM nginx:latest
+
+COPY ./index.html /usr/share/nginx/html/index.html
+
+Максим 21:27
+vi /etc/gitlab-runner/config.toml
+
+Yurii Vilchynskyi 21:39
+https://docs.gitlab.com/ci/variables/predefined_variables/
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+
+Today
+
+Maksym Skomorokhov 20:08
+FROM nginx:latest
+
+COPY ./index.html /usr/share/nginx/html/index.html
+
+Максим 21:27
+vi /etc/gitlab-runner/config.toml
+
+Yurii Vilchynskyi 21:39
+https://docs.gitlab.com/ci/variables/predefined_variables/
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+
+Today
+
+Maksym Skomorokhov 20:08
+FROM nginx:latest
+
+COPY ./index.html /usr/share/nginx/html/index.html
+
+Максим 21:27
+vi /etc/gitlab-runner/config.toml
+
+Yurii Vilchynskyi 21:39
+https://docs.gitlab.com/ci/variables/predefined_variables/
+Messages addressed to "meeting group chat" will also appear in the meeting group chat in Team Chat
+
+Volodymyr Vystavkin 21:47
+Всем хорошуго вечера.
+
+Максим 21:48
+sudo gitlab-runner register \
+  --non-interactive \
+  --url "https://gitlab.com/" \
+  --token "glrt-zRbjezGtcbt_NrjJVBhqjmM6MQpvOjEKcDoxZGJxOTIKdDozCnU6YW4zMTQc.01.1o0cgeiak" \
+  --tag-list "petclinic-runner" \
+  --executor "docker" \
+  --docker-privileged \
+  --docker-image alpine:latest \
+  --description "docker-runner"
+
+Maksym Skomorokhov 22:05
+sudo nano /etc/gitlab-runner/config.toml
+
+В коде
+tags = ["YOUR_NAME"]

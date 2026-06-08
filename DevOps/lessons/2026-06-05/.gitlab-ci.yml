@@ -1,0 +1,35 @@
+default:
+  tags: [ "test-cats" ]
+
+stages:
+  - build
+  - deploy
+
+build_project:
+  stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  image:
+    name: docker:29.5.2
+    entrypoint: [""]
+  services:
+    - name: docker:29.5.2-dind
+      alias: docker
+  script: |
+    SHORT_SHA=$(git rev-parse --short HEAD)
+    docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+    docker build -t maks1020/cats:latest -t maks1020/cats:$SHORT_SHA .
+    docker push maks1020/cats:latest
+    docker push maks1020/cats:$SHORT_SHA
+
+deploy_project:
+  stage: deploy
+  image: alpine:latest
+  before_script: |
+    apk update
+    apk add openssh
+    apk add sshpass
+  script: |
+    sshpass -p $SERVER_PASS ssh -o StrictHostKeyChecking=no $SERVER_LOGIN@$SERVER_IP docker ps
+    
