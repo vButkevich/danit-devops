@@ -1,0 +1,70 @@
+HW 17 AWS VPC E...
+
+AWS VPC Вправа
+Завдання
+Створіть VPC.
+
+Створіть дві підмережі (subnet groups): публічну та приватну 
+
+Створіть один екземпляр EC2 у публічній підмережі та один EC2 у приватній підмережі.
+
+Переконайтесь, що EC2-екземпляр у публічній підмережі доступний з інтернету
+ та до нього можна під’єднатися через SSH.
+
+Переконайтесь, що EC2-екземпляр у приватній підмережі не доступний з інтернету,
+ але доступний із EC2-екземпляра публічної підмережі.
+
+Переконайтесь, що EC2-екземпляр у приватній підмережі має доступ до інтернету.
+
+
+
+
+
+Для ознайомлення
+What is Amazon VPC? — що таке Amazon VPC
+VPC with Public and Private Subnets (NAT) — налаштування VPC із публічними та приватними підмережами
+AWS EC2 Getting Started — початок роботи з EC2
+
+
+
+
+ENG:
+
+
+
+
+
+AWS VPC Exercise
+Task
+Create a VPC
+
+Create two subnet groups: public and private
+
+Create one EC2 instance in the public subnet and one EC2 instance in the private subnet
+
+Ensure that the EC2 instance in the public subnet is accessible over the internet, allowing you to connect via SSH
+
+Ensure that the EC2 instance in the private subnet is not accessible from the internet but is accessible from the EC2 instance in the public subnet
+
+Ensure that the EC2 instance in the private subnet has access to the internet
+
+
+
+
+
+To Read
+What is Amazon VPC?
+VPC with Public and Private Subnets (NAT)
+AWS EC2 Getting Started
+
+
+
+
+Формат здачі ДЗ:
+1. Скрін з створеним VPC
+2. Скріни з створеними сабнетами
+3. Скріни з створеними ЕС2
+4. Скріни з створенням всього необхідного для доступу до Інтернету
+5. Скрін з підключенням по SSH до EC2, яка в публічній підмережі
+6. Скрін з підключенням по SSH з EC2, яка в публічній підмережі до ЕС2, яка в приватній підмережі
+7. Скрін з пінгом google.com з EC2, яка в приватній підмережі

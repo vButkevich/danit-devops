@@ -1,0 +1,5 @@
+ssh -i "C:\Slavko\DAN-IT\DevOps\.aws\main-key-pair.pem" ubuntu@3.71.203.77
+
+
+ssh -A -J ubuntu@3.71.203.77 ubuntu@10.17.2.17
+
