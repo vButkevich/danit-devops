@@ -1,0 +1,83 @@
+Today
+
+Максим 20:49
+https://www.youtube.com/shorts/l8fSueoKDvI
+
+dl 20:58
+Навіщо це? У нас ж вхід по паролю
+
+Yurii Vilchynskyi 20:58
+Ну в нас ж вхід по паролю
+
+denys 20:59
+endpoints треба обрати
+
+dl 20:59
+Просто ключ якийсь сетапимо і для чого?
+
+Максим 21:00
+EC2 serial console
+
+Yurii Vilchynskyi 21:00
+Це походу той tls
+
+Maksym Skomorokhov 21:02
++
+
+dl 21:02
++
+
+denys 21:03
++
+
+Максим 21:03
++
+
+dl 21:04
+Це походу той tls
+Ви праві, це опційно, але вони таким чином гарантують безпеку від inject in the middle атак
+
+Yurii Vilchynskyi 21:07
+apt install postgresql-client-18
+
+Maksym Skomorokhov 21:15
+От таку знайшов
+docker run \
+--name petclinic \
+--network petclinic \
+-p 8080:8080 \
+-e SPRING_PROFILES_ACTIVE=postgres \
+-e POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinic \
+-e POSTGRES_USER=petclinic \
+-e POSTGRES_PASS=mysecretpassword \
+-d petclinic-app:v1
+Сори, оце вона має бути
+
+Yurii Vilchynskyi 21:18
+docker run \
+--name petclinic \
+-p 8080:8080 \
+-e SPRING_PROFILES_ACTIVE=postgres \
+-e POSTGRES_URL=jdbc:postgresql://petclinic.clsiiee6is5s.eu-central-1.rds.amazonaws.com:5432/petclinic \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_PASS=testtest123 \
+17062000/petclinic-new:v2
+docker run --rm --name petclinic -p 8080:8080 -e SPRING_PROFILES_ACTIVE=postgres -e POSTGRES_URL=jdbc:postgresql://petclinic.clsiiee6is5s.eu-central-1.rds.amazonaws.com:5
+432/petclinic -e POSTGRES_USER=postgres -e POSTGRES_PASS=testtest123 17062000/petclinic-new:v2
+jdbc:postgresql://
+
+dl 21:38
+Фух)
+
+dl 21:44
++
+
+Maksym Skomorokhov 21:44
++
+
+dl 21:52 (Edited)
+щоб перевірити що ви не в локальному сторедж ходите SELECT id, first_name, last_name, city, telephone FROM owners WHERE last_name = '...';
+
+Volodymyr Vystavkin 22:04
++
+

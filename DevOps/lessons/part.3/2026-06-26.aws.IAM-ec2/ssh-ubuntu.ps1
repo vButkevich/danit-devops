@@ -60,3 +60,6 @@ ssh-add "C:\Slavko\DAN-IT\DevOps\.aws\main-key-pair.pem"
 ssh -A -J ubuntu@63.180.55.80 ubuntu@192.168.2.249
 
 
+ssh -i "C:\Slavko\DAN-IT\DevOps\.aws\main-key-pair.pem" ubuntu@18.156.178.70
+
+ssh -A -J ubuntu@18.156.178.70 ubuntu@10.0.2.50

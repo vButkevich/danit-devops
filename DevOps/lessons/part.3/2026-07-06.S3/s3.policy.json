@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:Put*"
+            ],
+            "Resource": "arn:aws:s3:::test-984140674362/*"
+        }
+    ]
+}
+
+
+}
+aws s3 cp ./awscliv2.zip s3: //test-984140674362/
+aws s3 cp  s3: //test-984140674362/awscliv2.zip  .
+
+

@@ -1,0 +1,120 @@
+Today
+
+Dmytro Vasiliev 19:12
+а що за Use a foundation model in the Amazon Bedrock playground ?
+
+Dmytro Vasiliev 19:12 (Edited)
+останні 20 баксів лишилось добити)
+
+dl 19:14
++
+
+Максим 19:22
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+echo `curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4` >  /var/www/html/index.nginx-debian.html
+systemctl restart nginx
+
+dl 19:30
+Дробить
+
+dl 19:38
+Я все життя думав що їх 2)
+
+Холодні і гарячі об*єкти по зонам)
+І все)
+
+dl 19:50
+За LIST гроші брати( нелюди(
+
+dl 20:01
+Наче новою поштою їхати буде)
+
+Dmytro Vasiliev 20:09
+я в біос авс проломився О-О
+
+dl 20:16
+Там 4xx були
+
+dl 20:22
+Rewrite мається на увазі випадковий?
+
+dl 20:32 (Edited)
+До речі в превью відкриває пресайном. Цікаво чи вартує це шось
+
+dl 20:32
+додатково
+
+Dmytro Vasiliev 20:35
+єєє. проломив убунту без ссш і пароля) тепер матиму спокій)
+
+Максим 21:01
++
+
+dl 21:01
+Уступлю)
+
+aleksvoronov 21:01
++
+
+dl 21:01
++
+тоді
+
+Maksym Skomorokhov 21:01
++
+
+denys 21:01
++
+
+Максим 21:04
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*",
+                "s3:Describe*",
+                "s3-object-lambda:Get*",
+                "s3-object-lambda:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+Dmytro Vasiliev 21:05
+"Resource": "arn:aws:s3:::YOUR-BUCKET-NAME"
+такий звук наче ноут з вікна викинули 🤣
+
+You 21:10
++
+share+
+
+Yurii Vilchynskyi 21:10
+1. M M
+2. alex
+3. M S
+4. D
+5. V
+
+dl 21:28
++
+
+Максим 21:29
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:Get*",
+				"s3:Put*"
+			],
+			"Resource": "arn:aws:s3:::test-984140674362/*"
+		}
+	]
+}
+aws s3 cp ./awscliv2.zip s3://test-984140674362/
+aws s3 cp  s3://test-984140674362/awscliv2.zip  .

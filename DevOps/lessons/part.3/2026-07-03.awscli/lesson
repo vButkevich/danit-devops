@@ -1,0 +1,15 @@
+
+awscli
+
+awscli --version
+
+1. login
+2. login
+3.aws s3 ls
+
+create ec2
+https://docs.aws.amazon.com/cli/latest/reference/ec2/
+
+
+aws ec2 run-instances
+aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
