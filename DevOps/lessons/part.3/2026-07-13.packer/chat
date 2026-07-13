@@ -1,0 +1,119 @@
+Today
+
+Maksym Skomorokhov 19:01
+30 грн це жесть ))) я ще по 5 катав
+
+dl 19:04
+Агрегаторы всякие
+Poizdato і т.д
+Я пізніше зроблю, нема часу(
+
+yurii 19:07
+в мене в роботі все, трохи випав ізза відпустки. сорі
+
+dl 19:11 (Edited)
+DB Architect хай гроші відробляє великі)
+
+dl 19:14
+EXPLAIN перед будь-яким запитом і аналізуйте)
+
+Максим 19:20
++
+
+aleksvoronov 19:20
++
+
+Vlad 19:20
++
+
+Maksym Skomorokhov 19:20
++
+
+Volodymyr Vystavkin 19:20
++
+
+Ольга Кирилюк 19:22
++
+
+Maksym Skomorokhov 19:22
+template
+
+Volodymyr Vystavkin 19:22
+template
+
+Volodymyr Vystavkin 19:27
+snapshot ?
+
+dl 19:28
+Бекапчик бахнуть на с3)
+
+Maksym Skomorokhov 19:28
+Коли крашнулось, то вже байдуже напевно
+
+dl 19:46
+Superfast Superpower
+
+Volodymyr Vystavkin 20:06
+user & role
+
+dl 20:16
+Ща наберу
+
+Максим 20:17
+СОРИ
+
+Yurii Vilchynskyi 20:37
+https://developer.hashicorp.com/packer
+
+dl 20:49
++
+
+Maksym Skomorokhov 20:50
++
+
+aleksvoronov 20:50
++
+
+Yurii Vilchynskyi 21:12
+https://developer.hashicorp.com/packer/tutorials/aws-get-started/aws-get-started-build-image
+https://developer.hashicorp.com/packer/tutorials/aws-get-started/aws-get-started-build-image
+
+dl 21:30
+Якісь милиці
+
+Maksym Skomorokhov 21:51
+A config file must be suffixed with `.pkr.hcl` or `.pkr.json`. A folder can be
+В мене таке
+
+Yurii Vilchynskyi 22:07
+[profile packer]
+credential_process = aws login --profile default --export
+
+Максим 22:08
+https://www.google.com/search?q=packer+login+aws&sca_esv=523f80920ba62e9a&sxsrf=APpeQnvqgiRUyWt8CdTBq_XhBQFqbfWKNg%3A1783969699551&udm=50&fbs=ABfTbFXwfYg-AsVmc75aAkBispm6k7RIMh52cWHUntfypj3niv0vpWpy8F5Hmr7ocaLGY8w97SaMWsOyrE9qqBQqJMZEL_o71gsVprrwe1tG6GzmOS5J1MQivEDdUfD2B_MQcTuwysL7UGJ3qCls2OScZNtAy1YRJKzObIsR_ZRsGFLC94yEiG_oG1eFjMyWfkxlTBU2RTFBh602sT4tEGU6h8ozXiGveK8-kVBKDDr0eESAunbi-6nAyVEoJDPjRRlv4QlQtnEBaikLG692ITZl9dAurT3sfQ&aep=1&ntc=1&sa=X&ved=2ahUKEwix9-yBrdCVAxVDExAIHX7ZBKMQ2J8OegQIERAD&biw=1600.833251953125&bih=773.3333129882812&dpr=1.2&sourceid=chrome&ccb=1&cs=0&hl=uk&mstk=AUtExfA1oMkVICpTO1HmNtfhUUDuG_21iVBsSwLfjdIUSJencuVhL1RfVtmTZfaDVuyoxYJmay4pnePBnx0PB5cEISCNrCRgdQ6qrANTLigMbciybK8FB3EkWz76B0RhgZ87DagVlz178qQrWUXfOt4-uBYQv9n7iofK09IzZ8LP6TjYnhhTPjjOaNYmqAzmUIFJ0LfZYV8tDSH3-UBonfXEZTpvutqy_hq0XOCxKlNu09lfrz-NWnfTRpm6S14Q4WlmtFLWnVcmtUsm1g&csuir=1&mtid=pzdVas2LE8CwwPAP14fPuQ4
+
+Yurii Vilchynskyi 22:10
+[profile packer]
+credential_process = aws configure export-credentials --profile default --format process
+region = eu-central-1
+
+dl 22:12
++
+
+Yurii Vilchynskyi 22:19
+https://developer.hashicorp.com/packer/docs/commands/build
+
+dl 22:20
+Робота амішка)
+
+Yurii Vilchynskyi 22:23
+https://developer.hashicorp.com/packer/integrations/hashicorp/amazon/latest/components/builder/ebs
+
+Maksym Skomorokhov 22:29
+aws ec2 deregister-image \
+  --image-id ami-0ae208633387f73cc \
+  --delete-associated-snapshots \
+  --region eu-central-1 \
+  --profile packer
+
+Бо щось в ui  нема наче
