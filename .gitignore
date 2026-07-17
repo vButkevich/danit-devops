@@ -13,3 +13,10 @@ DevOps/hw/
 
 *copy
 *copy*
+
+*.zip*
+
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate.backup
+terraform.tfstate
