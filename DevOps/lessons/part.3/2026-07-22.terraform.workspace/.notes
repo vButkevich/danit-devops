@@ -1,0 +1,23 @@
+terraform plan -var-file ./environments/dev.tfvars
+
+
+terraform workspace list
+
+
+terraform workspace new dev
+terraform workspace new prod
+
+
+terraform workspace select dev
+terraform workspace select prod
+
+
+terraform init reconfigure
+
+
+gitlab-runner
+
+1.network
+2.launch template - asg
+2.1 user data + instalation script
+

@@ -1,0 +1,112 @@
+Today
+
+dl 19:03
+Захистився він)
+
+aleksvoronov 19:18
++
+
+Ольга Кирилюк 19:18
++
+
+You 19:18
++-
+
+denys 19:18
++
+
+Maksym Skomorokhov 19:18
++
+
+Максим 19:18
++
+
+Dmytro Vasiliev 19:51
+а, он воно що
+
+dl 19:58
+ОО мені так більше подобається )
+
+Yurii Vilchynskyi 20:06
+env = "dev"
+vpc_cidr = "192.168.0.0/20"
+subnets_cidr = {
+public_a = "192.168.1.0/24"
+public_b = "192.168.2.0/24"
+private_a = "192.168.3.0/24"
+private_b = "192.168.4.0/24"
+}
+workspace/dev/terraform.tfstate
+
+Yurii Vilchynskyi 20:24
+terraform {
+required_version = ">1.10"
+
+required_providers {
+aws = {
+source = "hashicorp/aws"
+version = "~> 6.0"
+}
+}
+
+backend "s3" {
+bucket = "tf-state-620057206768"
+region = "eu-central-1"
+workspace_key_prefix = "ws"
+key = "terraform.tfstate" # workspace_key_prefix/workspace_name/key
+profile = "packer"
+use_lockfile = true
+}
+}
+
+provider "aws" {
+region = var.aws_region
+}
+
+denys 20:27
++
+
+Maksym Skomorokhov 20:27
++
+
+Ольга Кирилюк 20:27
++
+
+dl 20:27
++
+
+Dmytro Vasiliev 20:34 (Edited)
+якщо багато костилів наліплювати - виходить дендрофекальна конструкція. Звучить не дуже ок)
+
+dl 20:50
+На Одіссею йдете?)
+ФІльм
+
+Maksym Skomorokhov 21:01
+Плюс здається дуже багато додаткових data source
+
+Максим 21:06
++
+
+dl 21:07
+Він завжди смельчак
+
+Maksym Skomorokhov 21:42
+Тут є трохи лишнього
+
+Maksym Skomorokhov 22:03
+Може так? 
+data.aws_ami.ubuntu.root_device_name
+
+Максим 22:05
+Can't access attributes on a set of objects. Did you mean to access an attribute across all elements of the set?
+╵
+PS D:\terraform\GITLAB_SI\env\dev> terraform.exe apply
+╷
+│ Error: Invalid index
+│ 
+│   on ..\..\modules\runers\lt.tf line 5, in resource "aws_launch_template" "example":
+│    5:     device_name = data.aws_ami.ubuntu_26_04.block_device_mappings[0].device_name
+│ 
+│ Elements of a set are identified only by their value and don't have any separate index or key to select with, so it's
+│ only possible to perform operations across all elements of the set.
