@@ -1,0 +1,86 @@
+Today
+
+Maksym Skomorokhov 19:25
++
+
+Максим 19:25
++
+
+aleksvoronov 19:25
++
+
+Volodymyr Vystavkin 19:25
++
+
+aleksvoronov 19:25
++
+
+Dmytro Vasiliev 19:25
+я мабуть послухаю, бо ще не догнав))
+
+dl 19:26 (Edited)
+На роботі аншлаг, мб піду на доп сесію))
+
+dl 19:26
+Доп*
+
+Volodymyr Vystavkin 19:49
+versioning
+?
+state locking?
+
+Volodymyr Vystavkin 20:11
++
+
+Максим 20:50
++
+
+Maksym Skomorokhov 20:52
+Auto scaling
+
+Максим 21:22
+# 1. Create the Security Group for the ASG instances
+resource "aws_security_group" "asg_sg" {
+  name        = "asg-security-group"
+  description = "Allow inbound web traffic"
+  vpc_id      = var.vpc_id # Replace with your VPC ID
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+# 3. Define the Auto Scaling Group
+resource "aws_autoscaling_group" "app_asg" {
+  name_prefix         = "app-asg-"
+  vpc_zone_identifier = var.subnets_id  # Replace with Subnet IDs
+  desired_capacity = 1
+  min_size         = 1
+  max_size         = 1
+  launch_template {
+    id      = aws_launch_template.example.id
+    version = "$Latest"
+  }
+  # Optional: Automatically replace old instances when the Launch Template updates
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    triggers = ["tag"]
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+Maksym Skomorokhov 21:23
+Ще може бути це 
+version = aws_launch_template.runner.latest_version
