@@ -1,0 +1,16 @@
+ansible runner
+
+ansible -i inventory.yaml aa -m ping
+
+
+sudo aapt update
+sudo atp install nginx
+
+
+idempoten
+
+
+avoid 
+module_shell
+module_command
+

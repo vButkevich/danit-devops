@@ -1,0 +1,114 @@
+Today
+
+Dmytro Vasiliev 19:12
+471  sudo add-apt-repository --yes --update ppa:ansible/ansible
+  472  sudo apt install ansible
+  473  sudo apt install sshpass -y
+.
+на всл така ж тєма і потім можна буде вказати змінні для вскод
+бо редхатівський плагін хоче живий ансібл на борту
+
+Yurii Vilchynskyi 19:15
+python3 -m pip install --user ansible
+
+Dmytro Vasiliev 19:17
+https://docs.ansible.com/projects/ansible/latest/installation_guide/installation_distros.html
+
+Dmytro Vasiliev 19:22
+ping - pong
+
+aleksvoronov 19:22
++
+
+Maksym Skomorokhov 19:22
++
+
+Volodymyr Vystavkin 19:22
++
+
+Максим 19:22
++++
+
+Dmytro Vasiliev 19:28 (Edited)
+я взагалі часто розширення не ставлю
+
+Dmytro Vasiliev 19:29
+і квадратні дужки їдуть однаково
+
+Yurii Vilchynskyi 19:30
+---
+all:
+hosts:
+webserver:
+ansible_host: 192.168.1.10
+
+Yurii Vilchynskyi 19:37
+[defaults]
+host_key_checking = False
+
+Dmytro Vasiliev 19:41
+але шел команди треба однаково налаштовувати: тут фіксік сам не провірить чи все по-феншуй
+https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/shell_module.html
+ansible.builtin.command (використовується за замовчуванням і є безпечнішим) та ansible.builtin.shell (використовується, коли потрібні оператори оболонки). [1, 2]
+Головна відмінність між ними полягає в тому, що shell запускає команди через оболонку (/bin/sh), дозволяючи використовувати конвеєри (пайпи |), перенаправлення (>, >>) та змінні оточення, тоді як command виконує бінарний файл напряму.
+
+Yurii Vilchynskyi 19:47
+https://www.youtube.com/watch?v=goclfp6a2IQ&list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN
+
+Maksym Skomorokhov 19:53
++
+
+Dmytro Vasiliev 20:05 (Edited)
+@Максим ви взагалі можете залогінитись на колібрі і там цікавіше буде)
+
+Dmytro Vasiliev 20:18
+- name: Install base packages
+ ansible.builtin.apt:
+name:
+ - ca-certificates
+ - curl
+ - gnupg
+ - apt-transport-https
+state: present
+update_cache: true
+
+Dmytro Vasiliev 20:21
+- name: zabbix-agent2
+ apt:
+update_cache: yes
+name:
+ - zabbix-agent2
+ - zabbix-agent2-plugin-*
+ - name: Enabling zabbix-agent2
+systemd:
+name: zabbix-agent2
+enabled: yes
+state: restarted
+
+Dmytro Vasiliev 20:28
+- name: Gather runner VM information by name
+ community.proxmox.proxmox_vm_info:
+node: "{{ proxmox_node }}"
+name: "{{ runner_vm_name }}"
+type: qemu
+register: runner_vm_info_by_name
+- name: stat out
+ ansible.builtin.command:
+cmd: systemctl status zabbix-agent2
+register: out
+ - name: output execution
+debug: var=out.stdout_lines
+
+dl 21:35
+Це ж звичайний шаблонізатор
+
+Dmytro Vasiliev 21:48
+- name: Add  user to docker group
+ user:
+name: uuuussseer
+groups: docker
+append: yes
+notify: Restart service
+
+Dmytro Vasiliev 21:49
+@Yurii Vilchynskyi ТАК ПО-ФЕНШУЙ?
