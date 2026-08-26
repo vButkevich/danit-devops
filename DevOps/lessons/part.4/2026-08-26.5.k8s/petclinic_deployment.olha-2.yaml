@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-config
+data:
+  PROFILES_ACTIVE: "postgres"
+  DATASOURCE_URL: "jdbc:postgresql://postgres-svc:5432/petclinicdb"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-deployment
+  labels:
+    app: petclinic-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: 17062000/petclinic-new
+        ports:
+        - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: POSTGRES_PASSWORD
+          - name: SPRING_DATASOURCE_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: POSTGRES_USERNAME
+          - name: SPRING_DATASOURCE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: petclinic-config
+                key: DATASOURCE_URL
+          - name: SPRING_PROFILES_ACTIVE
+            valueFrom:
+              configMapKeyRef:
+                name: petclinic-config
+                key: PROFILES_ACTIVE
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-svc
+spec:
+  type: ClusterIP
+  selector: 
+    app: petclinic
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petclinic-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: petclinic.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: petclinic-svc
+                port:
+                  number: 8080
+
