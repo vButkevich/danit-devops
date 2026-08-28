@@ -1,0 +1,165 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-config
+data:
+  SPRING_PROFILES_ACTIVE: "postgres"
+  POSTGRES_URL: "jdbc:postgresql://vol-petclinic-pg-set-0.petclinic-db-headless:5432/petclinic"
+  POSTGRES_USER: "petclinic"
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+data:
+  POSTGRES_DB: "petclinic"
+  POSTGRES_USER: "petclinic"
+
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: "12345678"
+  POSTGRES_PASS: "12345678"
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-deployment
+  labels:
+    app: petclinic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+        - name: petclinic
+          image: 17062000/petclinic-new:latest
+
+          envFrom:
+            - configMapRef:
+                name: petclinic-config
+
+          env:
+            - name: POSTGRES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASS
+
+          ports:
+            - name: http
+              containerPort: 8080
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: petclinic-pg-set
+  labels:
+    app: petclinic-postgres
+spec:
+  serviceName: petclinic-db-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic-postgres
+  minReadySeconds: 30 # seconds
+  template:
+    metadata:
+      labels:
+        app: petclinic-postgres
+    spec:
+      containers:
+        - name: petclinic-postgres
+          image: postgres:17
+          volumeMounts:
+            - name: vol
+              mountPath: /var/lib/postgresql/data
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+          ports:
+            - name: postgres
+              containerPort: 5432
+  volumeClaimTemplates:
+    - metadata:
+        name: vol
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: petclinic
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-db-headless
+spec:
+  clusterIP: None
+  selector:
+    app: petclinic-postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petclinic-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: petclinic.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: petclinic-svc
+                port:
+                  number: 8080
