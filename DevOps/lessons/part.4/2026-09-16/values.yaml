@@ -1,0 +1,36 @@
+gitlabUrl: https://gitlab.com
+runnerRegistrationToken: "glrt-UaSgHngSHJP98qog0MOh6mM6MQpvOjEKcDoxZmcyeXcKdDozCnU6NXIzeWEc.01.1o1b73yp0"
+
+rbac:
+  create: true
+serviceAccount:
+  create: true
+
+runners:
+  name: "k8s-runner"
+  executor: "kubernetes"
+  runUntagged: true
+  locked: false
+
+  # Native GitLab Runner TOML config
+  config: |
+    [[runners]]
+      name = "k8s-runner"
+      url = "https://gitlab.com"
+      executor = "kubernetes"
+
+      [runners.kubernetes]
+        namespace = "default"
+        service_account = "gitlab-runner"
+        image = "alpine:latest"
+        poll_timeout = 600
+
+        # Optional but useful
+        cpu_limit = "2"
+        memory_limit = "2Gi"
+        cpu_request = "2"
+        memory_request = "2Gi"
+
+      [runners.kubernetes.node_selector]
+        "kubernetes.io/arch" = "arm64"
+        "kubernetes.io/os" = "linux"
