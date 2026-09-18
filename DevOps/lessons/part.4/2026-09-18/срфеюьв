@@ -1,0 +1,18 @@
+Today
+
+Ольга Кирилюк 19:30
++
+
+Максим 19:30
++
+
+Yurii Vilchynskyi 20:13
+aws eks update-kubeconfig --region eu-central-1 --name test1
+
+Maksym Skomorokhov 21:20
+curl -H "Host: apache.local" k8s-default-nginx-82aaaedfda-395000169.eu-central-1.elb.amazonaws.com 
+
+curl -H "Host: nginx.local" k8s-default-nginx-82aaaedfda-395000169.eu-central-1.elb.amazonaws.com
+
+Maksym Skomorokhov 21:40
+Проблема в том, что Helm-чарт пытается создать IngressClass с именем alb, но он уже существует в кластере и создан не этим Helm-релизом.
